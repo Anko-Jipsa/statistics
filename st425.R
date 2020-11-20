@@ -82,12 +82,13 @@ rho = seq(-0.95, 0.95, by=0.05) # ρ ∈ [−0.95, 0.95]
 estprob_1 = c() # Vector for estimated probability results.
 for (i in seq_along(rho)){
   X = rMNorm(n, mu, vars, rho[i])
+  print(cov(X))
   mask = list() # A list of masks for Xj ∈ (−1,4), j = 1,··· ,8.
   for (j in 1:p){
     mask[j] = list(-1<X[,j]& X[,j]<4) # Xj ∈ (−1,4), j = 1,··· ,8
   }
   estprob_1[i] = sum(Reduce("&", mask))/n
-  cat("Estimated probability for rho:",rho[i], "=", estprob_1[i], "\n")
+  cat("Estimated probability for ρ:",rho[i], "=", estprob_1[i], "\n")
 }
 for (i in seq_along(p)){
   l[i] = list(-1<X[,i]& X[,i]<4)
@@ -101,7 +102,7 @@ for (i in seq_along(rho)){
   X = rMNorm(n, mu, vars, rho[i])
   t = rowSums(abs(X)) # Absolute sum of all the p variate distributions.
   estprob_2[i] = length(t[t<=8])/n # Probability of Abs sum less or equal to 8.
-  cat("Estimated probability for rho:",rho[i], "=", estprob_2[i], "\n")
+  cat("Estimated probability for ρ:",rho[i], "=", estprob_2[i], "\n")
 }
 plot(rho, estprob_2, col="red",
      main="P2", xlab="ρ", ylab="Probability")
@@ -125,7 +126,7 @@ for (i in seq_along(rho)){
               X[,3]>0)/n
   nom = sum(X[,2]>0) / n
   estprob_3[i] = denom/nom
-  cat("Estimated probability for rho:",rho[i] , "=", estprob_3[i], "\n")
+  cat("Estimated probability for ρ:",rho[i] , "=", estprob_3[i], "\n")
 }
 plot(rho, estprob_3, col="red",
      main="P3", xlab="ρ", ylab="Probability")
@@ -136,11 +137,11 @@ for (i in seq_along(rho)){
   # P4 : P(ρ)=P(X1 >0,X3 >0|X2 <0)
   # Bayes' theorem
   denom =sum(X[,1]>0 & 
-              X[,2]<0 & 
-              X[,3]>0)/n
+              X[,2]>0 & 
+              X[,3]<0)/n
   nom = sum(X[,2]<0) / n
   estprob_4[i] = denom/nom
-  cat("Estimated probability for rho:",rho[i], "=", estprob_4[i], "\n")
+  cat("Estimated probability for ρ:",rho[i], "=", estprob_4[i], "\n")
 }
 plot(rho, estprob_4, col="red",
      main="P4", xlab="ρ", ylab="Probability")
@@ -169,6 +170,8 @@ mle_est = function(data){
   corr = matrix(0, nrow=dim, ncol=dim)
   k = length(mu)
   n = nrow(y)
+  
+  ll_d2 = -.5*log(1-rho)
   
   # MLE estimation for varying "ρ" 
   # Grid search method to find optimal "ρ" for constructing covariance matrix that maximises Log-likelihood
@@ -211,3 +214,4 @@ mle_est = function(data){
 }
 
 coeff_hat = mle_est(mnData)
+print(coeff_hat)
