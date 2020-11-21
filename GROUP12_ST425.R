@@ -1,7 +1,7 @@
 require(reshape2)
-require(stats4)
 require(MASS)
-#PART II
+# Group 12
+# PART II
 #### QUESTION 1
 
 set.seed(5) # Identical result for random sequence generation.
@@ -82,7 +82,6 @@ rho = seq(-0.95, 0.95, by=0.05) # ρ ∈ [−0.95, 0.95]
 estprob_1 = c() # Vector for estimated probability results.
 for (i in seq_along(rho)){
   X = rMNorm(n, mu, vars, rho[i])
-  print(cov(X))
   mask = list() # A list of masks for Xj ∈ (−1,4), j = 1,··· ,8.
   for (j in 1:p){
     mask[j] = list(-1<X[,j]& X[,j]<4) # Xj ∈ (−1,4), j = 1,··· ,8
@@ -90,9 +89,7 @@ for (i in seq_along(rho)){
   estprob_1[i] = sum(Reduce("&", mask))/n
   cat("Estimated probability for ρ:",rho[i], "=", estprob_1[i], "\n")
 }
-for (i in seq_along(p)){
-  l[i] = list(-1<X[,i]& X[,i]<4)
-  }
+
 plot(rho, estprob_1, col="red",
      main="P1", xlab="ρ", ylab="Probability")
 
@@ -171,8 +168,6 @@ mle_est = function(data){
   k = length(mu)
   n = nrow(y)
   
-  ll_d2 = -.5*log(1-rho)
-  
   # MLE estimation for varying "ρ" 
   # Grid search method to find optimal "ρ" for constructing covariance matrix that maximises Log-likelihood
   rho_list = seq(from=-0.99, to=0.99, by=0.01)
@@ -208,8 +203,8 @@ mle_est = function(data){
        type="l", xlab="ρ", ylab="Log-Likelihood")
   abline(v=rho_list[mle_index], col="red", lwd=3, lty=2)
   
-  coeff_hat = c(array(mu), rho_list[mle_index])
-  names(coeff_hat) = c("μ1", "μ2", "μ3", "μ4", "μ5", "μ6", "μ7", "μ8", "ρ")
+  coeff_hat = c(array(mu), rho_list[mle_index], ll_list[mle_index])
+  names(coeff_hat) = c("μ1", "μ2", "μ3", "μ4", "μ5", "μ6", "μ7", "μ8", "ρ","MLE")
   return(coeff_hat)
 }
 
