@@ -1,0 +1,224 @@
+
+```{r }
+require(reshape2)
+require(MASS)
+# Group 12
+# PART II
+#### QUESTION 1
+
+set.seed(5) # Identical result for random sequence generation.
+
+rMNorm = function(n, mu, vars, rho) {
+  #' Generate p-variate normal distribution with mean 'mu' and variance 'vars
+  #' with correlation between the i-th and the j-th components ρ^(|j−i|), 
+  #' where |ρ| ≤ 1 and 1 ≤ i, j ≤ p.
+  #' 
+  #' @param n (int): Number of repetition.
+  #' @param mu (array): p-dimensional array of mean value of n-variate.
+  #' @param vars (array): p-dimensional array of variance of n-variate.
+  #' @param rho (float): Correlation value for the n-variate functions.
+  #' 
+  #' @return The n x p variate normal distribution matrix.
+  
+  dim = length(mu)
+  
+  # Generating empty correlation matrix.
+  corr = matrix(0, 
+                nrow=dim, 
+                ncol=dim)
+  # Correlation matrix that has ρ^([j-i]) for each i-th and j-th component.
+  for (i in 1:dim) {
+    for (j in 1:dim) {
+      corr[i,j] = rho^(abs(i-j))
+    }
+  }
+  # print("Correlation matrix.")
+  # print(corr)
+  # cat("\n")
+  
+  Sigma = vars^0.5 %*% t(vars^0.5) * corr # Covariance matrix.
+  # print("Covariance matrix.")
+  # print(Sigma)
+  # cat("\n")
+  
+  eigsys = eigen(Sigma, symmetric=T) # eigen system of Sigma.
+  evals = eigsys$values # eigen values.
+  Gamma = as.matrix(eigsys$vectors) # matrix of eigen vectors.
+  
+  D = Gamma*0
+  for(i in 1:dim) D[i,i] = sqrt(evals[i])
+  rootSigma = Gamma %*% D %*% t(Gamma) #matrix root of Σ = ΓΛΓ′
+  Z = matrix(rnorm(n*dim), byrow=T, ncol=dim) # Z is n*dim matrix with elements drawn from N(0,1)
+  X = matrix(rep(mu, n), byrow=T, ncol=dim) + Z %*% rootSigma
+  # each row of eX is N(mu, Sigma)
+  return (X)
+}
+
+# p-variate normal distribution (p=3).
+n = 1000000 # number of replications
+mu = c(0, 0, 0) # An array of mean for p-variate.
+vars = c(1,2,3) # An array of variance for p-variate.
+rho = 0.5 # Correlation value (Condition written on question).
+random_seq = rMNorm(n, mu, vars, rho) # Generating p-variate normal distribution.
+
+
+var(random_seq)
+
+# Correlation of each i-th and j-th corresponds to the condition outlined on the question 1.
+cor(random_seq) 
+
+
+#### QUESTION 2
+
+# Arguments & Conditions
+n = 1000000 # number of replications
+p = 8
+mu = c()
+for (i in 1:p){
+  mu[i] = (-1)**i
+} # An array of mean for p-variate.
+vars = rep(1.5,p) # An array of variance for p-variate.
+rho = seq(-0.95, 0.95, by=0.05) # ρ ∈ [−0.95, 0.95]
+
+# P1
+estprob_1 = c() # Vector for estimated probability results.
+for (i in seq_along(rho)){
+  X = rMNorm(n, mu, vars, rho[i])
+  mask = list() # A list of masks for Xj ∈ (−1,4), j = 1,··· ,8.
+  for (j in 1:p){
+    mask[j] = list(-1<X[,j]& X[,j]<4) # Xj ∈ (−1,4), j = 1,··· ,8
+  }
+  estprob_1[i] = sum(Reduce("&", mask))/n
+  cat("Estimated probability for ρ:",rho[i], "=", estprob_1[i], "\n")
+}
+
+plot(rho, estprob_1, col="red",
+     main="P1", xlab="ρ", ylab="Probability")
+
+# P2
+estprob_2 = c() # Vector for estimated probability results.
+for (i in seq_along(rho)){
+  X = rMNorm(n, mu, vars, rho[i])
+  t = rowSums(abs(X)) # Absolute sum of all the p variate distributions.
+  estprob_2[i] = length(t[t<=8])/n # Probability of Abs sum less or equal to 8.
+  cat("Estimated probability for ρ:",rho[i], "=", estprob_2[i], "\n")
+}
+plot(rho, estprob_2, col="red",
+     main="P2", xlab="ρ", ylab="Probability")
+
+
+#### QUESTION 3
+# Arguments & Conditions
+n = 1000000 # number of replications
+p = 3
+mu = rep(0,p)
+vars = rep(0.5,p) # An array of variance for p-variate.
+rho = seq(-1, 1, by=0.05) # Simulation of correlation coefficient increasing.
+
+estprob_3 = c()
+for (i in seq_along(rho)){
+  X = rMNorm(n, mu, vars, rho[i])
+  # P3 : P(ρ)=P(X1 >0,X3 >0|X2 >0)
+  # Bayes' theorem
+  denom =sum(X[,1]>0 & 
+              X[,2]>0 & 
+              X[,3]>0)/n
+  nom = sum(X[,2]>0) / n
+  estprob_3[i] = denom/nom
+  cat("Estimated probability for ρ:",rho[i] , "=", estprob_3[i], "\n")
+}
+plot(rho, estprob_3, col="red",
+     main="P3", xlab="ρ", ylab="Probability")
+
+estprob_4 = c()
+for (i in seq_along(rho)){
+  X = rMNorm(n, mu, vars, rho[i])
+  # P4 : P(ρ)=P(X1 >0,X3 >0|X2 <0)
+  # Bayes' theorem
+  denom =sum(X[,1]>0 & 
+              X[,2]>0 & 
+              X[,3]<0)/n
+  nom = sum(X[,2]<0) / n
+  estprob_4[i] = denom/nom
+  cat("Estimated probability for ρ:",rho[i], "=", estprob_4[i], "\n")
+}
+plot(rho, estprob_4, col="red",
+     main="P4", xlab="ρ", ylab="Probability")
+
+#### QUESTION 4
+# Arguments
+mnData = read.csv("~/Downloads/mnData.txt", sep="")
+mnData = data.matrix(mnData)
+
+mle_est = function(data){
+  #' Run grid search MLE to find optimal parameters.
+  #' 
+  #' @param data (array): Normally distributed sequences.
+  #' @return (vector): A vector contains optimal parameter values.
+
+  # Sample
+  y = data
+  
+  # MLE for mu
+  # Likelihood function is maximized if mu is equal to the sample mean (e.g. mu = sum(x)/n)
+  mu = colMeans(y)
+  
+  # Parameters setup
+  fixed_variance = rep(1,length(mu)) # Sigma^2 = 1
+  dim = length(fixed_variance)
+  corr = matrix(0, nrow=dim, ncol=dim)
+  k = length(mu)
+  n = nrow(y)
+  
+  # MLE estimation for varying "ρ" 
+  # Grid search method to find optimal "ρ" for constructing covariance matrix that maximises Log-likelihood
+  rho_list = seq(from=-0.99, to=0.99, by=0.01)
+  ll_list = rep(0, length(rho_list)) # LL values for each grid search
+  for (x in seq_along(rho_list)){
+    iter_rho = rho_list[x]
+    
+    # Constructing covariance matrix 
+    for (i in 1:dim) {
+      for (j in 1:dim) {
+        corr[i,j] = iter_rho^(abs(i-j))
+      }
+    }
+    cov_mat = sqrt(fixed_variance) %*% t(sqrt(fixed_variance)) * corr
+    
+    LL_third_comp =  rep(0, n)
+    for (j in 1:n){
+      LL_third_comp[j] = t(y[j,]-mu) %*% ginv(cov_mat) %*% (y[j,]-mu)
+    }
+    ll_list[x] = -.5*n*k*log(2*pi) -.5*n*log(det(cov_mat)) - .5*sum(LL_third_comp)
+    print("Correlation value:")
+    print(iter_rho)
+    
+    print("Log-likelihood")
+    print(ll_list[x])
+    cat("\n")
+  }
+  # Index of maximum log-likelihood value
+  mle_index = which.max(ll_list)
+  
+  # Graphical illustration
+  plot(rho_list, ll_list, main="Grid search MLE", 
+       type="l", xlab="ρ", ylab="Log-Likelihood")
+  abline(v=rho_list[mle_index], col="red", lwd=3, lty=2)
+  
+  coeff_hat = c(array(mu), rho_list[mle_index], ll_list[mle_index])
+  names(coeff_hat) = c("μ1", "μ2", "μ3", "μ4", "μ5", "μ6", "μ7", "μ8", "ρ","MLE")
+  return(coeff_hat)
+}
+
+coeff_hat = mle_est(mnData)
+print(coeff_hat)
+```
+
+
+
+---
+title: GROUP12_ST425.R
+author: joonkang
+date: '2020-11-22'
+
+---
