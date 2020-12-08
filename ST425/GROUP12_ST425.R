@@ -145,7 +145,7 @@ plot(rho, estprob_4, col="red",
 
 #### QUESTION 4
 # Arguments
-mnData = read.csv("~/Downloads/mnData.txt", sep="")
+mnData = read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST425/mnData.txt", sep="")
 mnData = data.matrix(mnData)
 
 mle_est = function(data){
