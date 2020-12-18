@@ -3,9 +3,6 @@ title: "ST422 Assignment"
 author: '23074'
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  word_document:
-    toc: yes
-    toc_depth: '3'
   pdf_document:
     toc: yes
     toc_depth: 3
@@ -14,6 +11,9 @@ output:
     number_sections: yes
     fig_width: 12
     fig_height: 6
+  word_document:
+    toc: yes
+    toc_depth: '3'
 includes:
   in_header: latex/header.tex
   before_body: latex/before_body.tex
@@ -1011,7 +1011,7 @@ rolling_window = function(ts_v, M=210,A=120){
 # List of different window values (M)
 window_list = c(36, 72, 108, 144, 180)
 
-# Window selection fuction
+# Window selection function
 window_selection = function(ts_v, window_list, A){
   #' Using 'rolling_window' function to find the optimal window length.
   #' 
@@ -1051,13 +1051,13 @@ window_selection = function(ts_v, window_list, A){
   return(output_df)
 }
 
-# Mean Temperature, A = 120
+# Mean Temperature, A = 36
 mt_window36 = window_selection(mt_ts, window_list, A=36)
 
-# Rainfall, A = 120
+# Rainfall, A = 36
 rf_window36 = window_selection(rf_ts, window_list, A=36)
 
-# Sunshine, A = 120
+# Sunshine, A = 36
 ss_window36 = window_selection(ss_ts, window_list, A=36)
 
 ```
