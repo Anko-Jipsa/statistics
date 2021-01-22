@@ -1,0 +1,34 @@
+# Yahoo Finance sourced
+Yahoo_Kospi = read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST436/EX1/^KS11.csv")
+# Investing.com Sourced
+Inv_Btc = read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST436/EX1/BTC_USD%20Bitfinex%20Historical%20Data.csv")
+# NYSE TAQ Sourced
+Taq_Aapl = read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST436/EX1/yf0zjqjualcswnxl.csv")
+# FRED Currency data sourced
+Fred_Usdkrw = read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST436/EX1/DEXKOUS.csv")
+# CRSP Sourced
+Crsp_Aapl = read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST436/EX1/67bb2251f22bbec9.csv")
+# Compustat Sourced
+Compu_Nflx = read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST436/EX1/a519c0ff8d6bd654.csv")
+
+
+ts.plot(Yahoo_Kospi$Adj.Close, main="KOSPI")
+
+sample(Taq_Aapl, length(), replace=TRUE)
+
+runrun = function(){
+  # Interval in Seconds for sleep and run
+  interval <- 60
+  strt_tme <- Sys.time()
+  repeat {
+    if (Sys.time() - strt_tme > interval) {
+      strt_tme <- Sys.time()
+      print(paste("Start time:", strt_tme,
+                  "Current time:", Sys.time()))
+      name = paste("Sub sample of AAPL at", as.character(Sys.time()))
+      sub_sample = sample(Taq_Aapl$PRICE, dim(Taq_Aapl)[1]*0.5, replace=TRUE)
+      ts.plot(sub_sample, main=name)
+    }
+  }
+}
+
