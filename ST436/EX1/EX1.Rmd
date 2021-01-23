@@ -1,3 +1,14 @@
+---
+title: "EX1_script"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r cars}
 # Yahoo Finance sourced
 Yahoo_Kospi = read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST436/EX1/^KS11.csv")
 # Investing.com Sourced
@@ -27,3 +38,4 @@ runrun = function(){
       ts.plot(sub_sample, main=name)
     } }
 }
+```
