@@ -56,3 +56,6 @@ venv
 
 # VS CODE
 .vscode/
+.vscode
+/.vscode
+/.vscode/
