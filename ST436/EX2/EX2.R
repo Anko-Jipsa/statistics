@@ -1,6 +1,7 @@
 library(e1071)
 library(pracma)
-df = read.csv("~/Downloads/^KS11.csv")
+library(dplyr)
+df = read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST436/EX2/%5EKS11.csv")
 
 # Data pre-processing
 df = df %>% replace(.=="null", NA)
