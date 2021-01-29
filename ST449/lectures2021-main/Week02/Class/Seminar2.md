@@ -30,13 +30,13 @@ def plot_xor(x):
 ```
 Passing our data to the plotting function, as we can see in the image below, we cannot find a linear classifier that separates the red dots from the blue dots.
 
-<img src="figs/xor_problem.png" width=400>
+<img src="./figs/xor_problem.png" width=400>
 
 ### One solution
 
 In the lecture, we found this solution
 
-<img src="figs/xor_solved.png" width=500>
+<img src="./figs/xor_solved.png" width=500>
 
 We essentially need to find a mapping <img src="https://latex.codecogs.com/svg.latex?\Large&space;\phi" title="D_w"/> that transforms the input points into a feature space in which the points are linearly separable.
 
@@ -48,7 +48,7 @@ Consider the linear regression example in Seminar 1.  We are fitting the model <
 
 Similarly, the same logic applies when using neural networks. Consider the following network which has one hidden layer with four neurons and an output layer with one neuron, 
 
-<img src="figs/NN.png" width=600>
+<img src="./figs/NN.png" width=600>
 
 Each forward pass takes only one input data point which has a dimensionality of 2. To find the optimal parameters for the entire training dataset, we need to make sure that the same set of parameters are updated in the training process. 
 
@@ -56,13 +56,13 @@ Each forward pass takes only one input data point which has a dimensionality of 
 
 #### Compute the dimensionality of parameters
 
-<img src="figs/NN.png" width=600>
+<img src="./figs/NN.png" width=600>
 
 We see that the dimensionality of the weight matrix `w` and of the bias `b` are  <img src="https://latex.codecogs.com/svg.latex?\Large&space;w=[N^{(l)},N^{(l-1)}]" title="D_w"/> and  <img src="https://latex.codecogs.com/svg.latex?\Large&space;b=[N^{(l)},1]" title="D_b"/>, where <img src="https://latex.codecogs.com/svg.latex?\Large&space;l" title="D_w"/> is index of a layer and <img src="https://latex.codecogs.com/svg.latex?\Large&space;l-1" title="D_w"/> is the index of the preceding layer. 
 
 Let's create a neural network to solve the XOR problem using what we have learned so far. 
 
-See [Python notebook Week2](week2.ipynb).
+See [Python notebook Week2](./week2.ipynb).
 
 ## Visualise a neural network architecture
 
@@ -101,7 +101,7 @@ network.add(Dense(units=2, activation='relu',  kernel_initializer='uniform', inp
 network.add(Dense(units=1, activation='sigmoid', kernel_initializer='uniform'))  
 ann_viz(network, title="")
 ```
-<img src="figs/2-layer_nn.png" width=300>
+<img src="./figs/2-layer_nn.png" width=300>
 
 An example with more layers and neurons,
 ```
@@ -117,7 +117,7 @@ network.add(Dense(units=1, activation='sigmoid', kernel_initializer='uniform'))
 ann_viz(network, title="")
 ```
 
-<img src="figs/multi-layer_nn.png" width=500>
+<img src="./figs/multi-layer_nn.png" width=500>
 
 This library can also visualise convolutional neural networks, which may be useful for our future lectures. 
 
@@ -132,7 +132,7 @@ np.random.seed(1)
 
 - Sample two classes of points: (a) 200 data points from a uniform distribution on [<img src="https://latex.codecogs.com/svg.latex?\Large&space;\gamma" title="D_w"/> /2, 1] x [-1/2, 1/2] and (b) another 200 data points from a uniform distribution on [-1, -<img src="https://latex.codecogs.com/svg.latex?\Large&space;\gamma" title="D_w"/>/2] x [-1/2, 1/2], where <img src="https://latex.codecogs.com/svg.latex?\Large&space;\gamma" title="D_w"/> is a margin parameter. The margin parameter is a lower bound on the distances between any two points in different classes. See figure below for an illustration:
 
-<img src="figs/percep_data.png" width=400>
+<img src="./figs/percep_data.png" width=400>
 
 ```
 gamma = 0.1  
@@ -186,4 +186,4 @@ tf.assign(ref, value, validate_shape=None, use_locking=None, name=None)
 - Stop when there are no misclassified training data points
 - See figure below for an illustration of decision boundary:
 
-<img src="figs/decision_boundary.png" width=400>
+<img src="./figs/decision_boundary.png" width=400>

@@ -29,7 +29,7 @@ The TensorFlow 2.0 architecture is organized in two major blocks: *Training* and
 
 <!--- ![tf](https://github.com/lse-st449/lectures2020/raw/master/Week01/Class/graphs/tf_architecture.png) -->
 
-<img src="figs/tf2_architecture.png" width=600>
+<img src="./figs/tf2_architecture.png" width=600>
 
 *Training* comprises elements for data ingestion, model building and validation (through Keras and Estimators) and distributed training over different hardware accelerators (CPUs, GPUs and TPUs). Models can be saved and exported for sharing purposes (through TF Hub). The *Deployment* of saved models can be done on a variety of platforms and other languages. 
 
@@ -69,7 +69,7 @@ A tensor is an n-dimensional array of an uniform type (called a [dType](https://
 
 A scalar is treated as a zero-dimensional (or *rank-0*) tensor, an array is treated as a one-dimensional (*rank-1*) tensor, and a matrix is treated as a two-dimensional (*rank-2*) tensor.
 
-<img src="figs/tf2_tensors.png" width=600>
+<img src="./figs/tf2_tensors.png" width=600>
 
 Refer to [this page](https://www.tensorflow.org/guide/tensor) for a detailed view of tensor types and related operations.
 
@@ -121,7 +121,7 @@ You should always use TensorFlow data type whenever possible. This is because
 
 For equation *y=(a-b)+c*d*, the data flow shown below is called a computational graph:
 
-<img src="figs/computational_graphs.png" width=600>
+<img src="./figs/computational_graphs.png" width=600>
 
 [](<img  src="https://github.com/lse-st449/lectures2020/raw/master/Week01/Class/graphs/computational%20graphs.png"  width="650"  height="400">)
 
@@ -402,7 +402,7 @@ We intend to model a linear relationship between a dependent variable `y` and an
 Consider a simple linear regression model <img src="https://latex.codecogs.com/svg.latex?\Large&space;y=wx+b" title="linear" /> , where `w` is the weight parameter and `b` is the bias parameter.
 
 1. Download `auto_insurance_in_sweden.csv` from the course repository (alternatively, from [Kaggle](https://www.kaggle.com/sunmarkil/auto-insurance-in-sweden-small-dataset)).
-2. Refer to [week1.ipynb](week1.ipynb) notebook to complete this exercise.
+2. Refer to [week1.ipynb](./week1.ipynb) notebook to complete this exercise.
 
 ## Homework: logistic regression
 
