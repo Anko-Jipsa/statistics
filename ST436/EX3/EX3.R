@@ -1,5 +1,5 @@
 #Q2.a
-df <- read.csv("~/Downloads/ysvmqmcmqg0wcbmg.csv")
+df <- read.csv("https://raw.githubusercontent.com/Anko-Jipsa/statistics/master/ST436/EX3/ysvmqmcmqg0wcbmg.csv")
 
 # Sampling the price series by each second.
 sample_sec <- function(df) {
@@ -27,7 +27,6 @@ price_filter = function(p_series, thresh=1.0){
 filtered_p = price_filter(raw_p)
 
 # The outliers observed in the last trading minutes are removed.
-par(mfrow=c(2,1))
 ts.plot(filtered_p, col="red", ylab="Cleaned")
 ts.plot(raw_p, ylab="Crude")
 
@@ -38,9 +37,10 @@ quad_var = function(p_series, diff_Sec){
 }
 
 n_series = seq(1, 60, by=1)
-quad_var_series = vector(, length(n_series))
+quad_var_series = rep(0, length(n_series))
 for (i in n_series){
   quad_var_series[i] = quad_var(filtered_p, i)
 }
 
+# The chart represents there is no microstructure noise.
 plot(quad_var_series, type="l", xlab="d", ylab="Quadratic Variation")
