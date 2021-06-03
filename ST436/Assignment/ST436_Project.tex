@@ -1,0 +1,1754 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  11pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[]{mathpazo}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={ST436},
+  pdfauthor={23074},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{ST436}
+\author{23074}
+\date{June 03, 2021}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\hypertarget{q1}{%
+\section{Q1}\label{q1}}
+
+\hypertarget{a}{%
+\subsection{a}\label{a}}
+
+This paper raised a challenge against the Gaussian maximum-likelihood
+estimator (GMLE) that the estimator may not be asymptotically normal if
+the innovation distribution is heavy tailed with an inftyite fourth
+moment, causing the convergence rate slower than the standard rate. In
+response to this, the paper is suggesting a log-transform-based least
+absolute deviation estimator (LADE) as an alternative approach which is
+robust to the heavy tails of the innovation distribution. And propose a
+goodness-of-fit statistics to help select which distribution to choose.
+(GMLE if innovation distribution is a normal distribution, LADE if the
+log squared innovations is close to a Laplace distribution)
+
+\hypertarget{b}{%
+\subsection{b}\label{b}}
+
+Re-writing the equation (2.1) in the paper using the notations from
+ST436 lecture notes:
+
+\[ X_t = \sigma_{t}\epsilon_{t}\]\\
+\[ \sigma^2_{t}\equiv\sigma_t(\theta)^2=a_0+\sum^{p}_{i=1}a_{i}X^2_{t-i}+\sum^{q}_{j=1}b_{j}\sigma^2_{t-j} \]
+
+where \(a_0,b_j,a_j \ge 0\), \(\theta=(a_0,a_1,...,a_p,b_1,...b_q)^T\)
+and \(\{\epsilon_t\}\) is a sequence of IID random variable with mean 0
+and variance 1 and \(\epsilon_t\) is an unknown distribution,
+independent of \{\(X_{t-k},k\ge1\)\} for all t.
+
+The necessary and sufficient condition for the above equation to be
+stationary process with \(EX_t^2<\infty\) is:
+
+\[\sum_{i=1}^p a_i + \sum_{j=1}^q b_j < 1\]
+
+Under this condition, \(\sigma_t^2= \sigma_t(\theta)^2\) can be shown
+as:
+
+\[\sigma_t^2=\frac{a_0}{1-\sum^{q}_{j=1}b_{j}}+\sum^{\min(p, t-1)}_{i=1}a_{i}X^2_{t-i}+\sum^{p}_{i=1}a_{i}\sum^{\infty}_{k=1}+\sum^{q}_{j_1=1}...+\sum^{q}_{j_k=1}b_{j_1}...b_{j_k}X^2_{t-j0j_1-...-j_k}\]
+
+And GMLE of GARCH(p,q) in the paper can be re-written as:
+
+\[f(X_1,...,X_t|a)=\prod_{t=\max(p,q)+1}^n \frac{1}{(2\pi\sigma_t^2)^{1/2}}\exp(\frac{-X_t^2}{2\sigma_t^2})\times f(X_1,...,X_{\max(p,q)}|a)\]
+
+where \(a=(a_0,a_1,...,a_{\max(p,q)})\)
+
+Then the target function for maximisation is:
+
+\[f(X_{\max(p,q)+1},...,X_n|a,X_1,...,X_{\max(p,q)}) =\prod_{t=\max(p,q)+1}^n \frac{1}{(2\pi\sigma_t^2)^{1/2}}\exp(\frac{-X_t^2}{2\sigma_t^2})\]
+
+Applying the logs then multiplication of -1 leads to the minimisation of
+the function w.r.t. \(\hat\theta\):
+
+\[\hat{\theta}=\arg\min_{\theta}\sum^{T}_{t=v+1}\lbrack\log\tilde\sigma_{t}^2+\frac{X^2}{\tilde\sigma_{t}^2}\rbrack\]
+
+Where \(\tilde\sigma_t^2\) is a truncated version of \(\sigma_t^2\) and
+\(v \ge1\) is an integer that controls the effect of this truncation.
+For ARCH(P) process where \(q =0\), then we choose \(v=p\) .
+
+\[\tilde\sigma_t^2=\frac{a_0}{1-\sum^{q}_{j=1}b_{j}}+\sum^{\min(p, t-1)}_{i=1}a_{i}X^2_{t-i}+\sum^{p}_{i=1}a_{i}\sum^{\infty}_{k=1}\sum^{q}_{j_1=1}...\sum^{q}_{j_k=1}a_{j_1}...a_{j_k}X^2_{t-j0j_1-...-j_k}I(t-i-j_1-...-j_k\ge1)\]
+
+In addition, the method can be further elaborated with the temporary
+assumption that \(\epsilon_t\sim N(0,1)\). Given \(\{X_k,k\le v\}\) with
+\(v \ge max(p,q)\), the conditional density function of
+\(X_{v+1},...,X_n\) is then proportional to maximisation of the function
+below:
+
+\[\max_{\theta}[\lbrace\prod^n_{t=v+1}\sigma^t_2\rbrace^{-1/2}\exp\lbrace-\frac{1}{2}\sum^n_{t=v+1}\frac{X^2_t}{\sigma_t^2}\rbrace]\]
+
+Comparing to the equations in ST436 lecture notes, the paper imposes
+truncated MLE with truncated \(\tilde\sigma^2_t\). Apart from that,
+given the lecture note proposes the MLE of GARCH model with Gaussian
+innovations which follow the same logic as in the paper (same
+\(\sigma_t^2\) structure).
+
+\hypertarget{c}{%
+\subsection{c}\label{c}}
+
+Let \(C_0>0\) be a constant that \(median(e_t^2)=1\) where
+\(e_t=C_o^{1/2}\epsilon_t\) and naturally \(median(log(e_t^2))=0\)
+
+\[s_t^2\equiv s_t(\alpha)^2= \gamma + \sum^{p}_{i=1}\beta_{i}X^2_{t-i}+\sum^{q}_{j=1}b_{j} s^2_{t-j}\]
+
+where: \(s_t^2=\sigma_t^2/C_0, \gamma = a_o/C_0, \beta_i=a_i/C_0\) and
+\(\alpha=(\gamma, \beta_1,...,\beta_p, b_1,...b_q)^T\).
+
+Then the taking the log of \(X_t^2\) becomes:
+
+\[\log(X_t^2)=\log \lbrace s_t(\alpha)^2 \rbrace +\log(e_t^2)\]
+
+Based on the setting, the median of \(log(e_t^2)\) becomes 0. Hence, the
+parameter \(\alpha\) that we want to optimise with the minimisation of
+\(E|\log(X_t^2)-\log \lbrace s_t(\alpha)^2 \rbrace|\) motivates the
+LADE. The parameter to optimise for LADE is now \(\hat\alpha\), and the
+minimisation function now becomes:
+
+\[\hat{\alpha}=\arg\min_{\theta}\sum^{T}_{t=v+1}|\log (X_{t}^2)-\log(\tilde s_t(\alpha)^2)|\]
+
+where \(\tilde s_t(\alpha)^2\) is a truncated version of
+\(s_t(\alpha)^2\):
+
+\[\tilde s_t(\alpha)^2 =\frac{\gamma}{1-\sum^{q}_{j=1}b_{j}}+ \sum_{i=1}^{min(p,t-1)} \beta_{t-i}X_{t-i}^2\sum^{p}_{i=1}\beta_{i}\sum^{\infty}_{k=1}\sum^{q}_{j_1=1}...\sum^{q}_{j_k=1}b_{j_1}...b_{j_k}X^2_{t-j0j_1-...-j_k}I(t-i-j_1-...-j_k\ge1)\]
+
+which is directly linked to the \(\tilde\sigma_t^2\) function in GMLE
+case but with different parameter optimisation.
+
+The above minimisation function can also be re-written as a maximum
+quasilikelihood estimator with assumption that \(\log(e_t^2)\) follows a
+Laplace distribution with density to \(0.5\lambda \exp(-\lambda|x|)\),
+where constant \(\lambda>0\) . Given \(\{X_k,k\le v\}\) with
+\(v \ge max(p,q)\), the conditional density function of
+\(X_{v+1},...,X_n\) is then proportional to maximisation of the function
+below:
+
+\[\max_{a} \exp(-\lambda \sum^{T}_{t=v+1}|\log (X_{t}^2)-\log( s_t(\alpha)^2)|)\]
+
+\hypertarget{d}{%
+\subsection{d}\label{d}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{simulate\_garch }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(params, n, d)  \{}
+  \CommentTok{\#\textquotesingle{} GARCH(1,1) simulation function for given distribution.}
+  \CommentTok{\#\textquotesingle{} @param params vector. The sequence of parameters, a0, a1, b1 respectively}
+  \CommentTok{\#\textquotesingle{} @param n int. \# of simulation size}
+  \CommentTok{\#\textquotesingle{} @param d vector. Sample population from the designated distribution}
+\NormalTok{  a0 }\OtherTok{=}\NormalTok{ params[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  a1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{2}\NormalTok{]}
+\NormalTok{  b1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{3}\NormalTok{]}
+\NormalTok{  sigma }\OtherTok{=}\NormalTok{ a0 }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a1 }\SpecialCharTok{{-}}\NormalTok{ b1)}
+\NormalTok{  x0 }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(sigma) }\SpecialCharTok{*}\NormalTok{ d[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  x }\OtherTok{=} \FunctionTok{c}\NormalTok{(x0)}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{    sigma\_new }\OtherTok{=}\NormalTok{ a0 }\SpecialCharTok{+}\NormalTok{ a1 }\SpecialCharTok{*}\NormalTok{ x0}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ sigma}
+\NormalTok{    x1 }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(sigma\_new) }\SpecialCharTok{*}\NormalTok{ d[i]}
+\NormalTok{    x }\OtherTok{=} \FunctionTok{c}\NormalTok{(x, x1)}
+\NormalTok{    x0 }\OtherTok{=}\NormalTok{ x1}
+\NormalTok{    sigma }\OtherTok{=}\NormalTok{ sigma\_new}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(x)}
+\NormalTok{\}}
+
+\CommentTok{\# Simulate GARCH (1,1) Series with normal distribution}
+\NormalTok{x }\OtherTok{=} \FunctionTok{simulate\_garch}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.3}\NormalTok{) , }\DecValTok{100}\NormalTok{, }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+In order to test the GMLE function, GARCH(1,1) process with \(a_0=0.5\),
+\(a_1=0.6\) and \(b_1=0.3\) is simulated for \(n=10000\) size using the
+custom GARCH function, simulate\_garch.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{gmle }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x, params) \{}
+  \CommentTok{\#\textquotesingle{} GMLE function in the paper. }
+  \CommentTok{\#\textquotesingle{} @param x vector. An array to be estimated}
+  \CommentTok{\#\textquotesingle{} @param params vector. The sequence of parameters, a0, a1, b1 respectively}
+\NormalTok{  a0 }\OtherTok{=}\NormalTok{ params[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  a1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{2}\NormalTok{]}
+\NormalTok{  b1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{3}\NormalTok{]}
+\NormalTok{  n }\OtherTok{=} \FunctionTok{length}\NormalTok{(x)}
+\NormalTok{  t\_sig }\OtherTok{=} \FunctionTok{c}\NormalTok{(a0}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{b1) }\SpecialCharTok{+}\NormalTok{ a1 }\SpecialCharTok{*}\NormalTok{ x[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\CommentTok{\# Equation (2.5)}
+\NormalTok{  t\_sig }\OtherTok{=} \FunctionTok{c}\NormalTok{(t\_sig, a0 }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ b1) }\SpecialCharTok{+}\NormalTok{ a1 }\SpecialCharTok{*}\NormalTok{ x[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ a1 }\SpecialCharTok{*} \FunctionTok{cumsum}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{b1}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(n}\SpecialCharTok{:}\DecValTok{1}\NormalTok{))[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(n}\DecValTok{{-}2}\NormalTok{)])}
+\NormalTok{  ll }\OtherTok{=} \FunctionTok{sum}\NormalTok{(x[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{n]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{t\_sig }\SpecialCharTok{+} \FunctionTok{log}\NormalTok{(t\_sig)) }\CommentTok{\# Equation (2.4) in the paper}
+  \ControlFlowTok{if}\NormalTok{ (a0}\SpecialCharTok{\textgreater{}=}\DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ a1 }\SpecialCharTok{\textgreater{}=} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ b1 }\SpecialCharTok{\textgreater{}=} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ (a1}\SpecialCharTok{+}\NormalTok{b1) }\SpecialCharTok{\textless{}} \DecValTok{1}\NormalTok{) \{ }\CommentTok{\# Required constraint for GARCH equation}
+    \FunctionTok{return}\NormalTok{(ll)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}\FunctionTok{return}\NormalTok{(}\FloatTok{1e+09}\NormalTok{)\}\}}
+
+\NormalTok{garch\_gmle }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+  \CommentTok{\#\textquotesingle{} Optimisation for GMLE.}
+  \CommentTok{\#\textquotesingle{} @param x vector. An array to be estimated}
+\NormalTok{  params }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{) }\CommentTok{\# initial parameters for optimisation}
+\NormalTok{  result }\OtherTok{=} \FunctionTok{optim}\NormalTok{(params, gmle, }\AttributeTok{x=}\NormalTok{x, }\AttributeTok{method =} \FunctionTok{c}\NormalTok{(}\StringTok{"BFGS"}\NormalTok{)) }\CommentTok{\# BFGS Algorithm for minimisation}
+\NormalTok{  res }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{par)}
+  \FunctionTok{row.names}\NormalTok{(res) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"alpha0"}\NormalTok{,}\StringTok{"alpha1"}\NormalTok{,}\StringTok{"beta"}\NormalTok{)}
+\NormalTok{  res[}\StringTok{"{-}LL"}\NormalTok{, ] }\OtherTok{=}\NormalTok{ result}\SpecialCharTok{$}\NormalTok{value}
+  \FunctionTok{return}\NormalTok{(res)\}}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{garch\_gmle}\NormalTok{(x), }\AttributeTok{caption=}\StringTok{"GARCH MLE"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lr@{}}
+\caption{GARCH MLE}\tabularnewline
+\toprule
+& result.par \\
+\midrule
+\endfirsthead
+\toprule
+& result.par \\
+\midrule
+\endhead
+alpha0 & 0.9216021 \\
+alpha1 & 0.8177468 \\
+beta & 0.0000347 \\
+-LL & 120.8646943 \\
+\bottomrule
+\end{longtable}
+
+Based on the result above, the custom GMLE function works as intended
+but the accuracy of the estimator needs to be tested and this will be
+further discussed in the next part (e).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lade\_mle }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x, params) \{}
+  \CommentTok{\#\textquotesingle{} LADE function in the paper. }
+  \CommentTok{\#\textquotesingle{} @param x vector. An array to be estimated}
+  \CommentTok{\#\textquotesingle{} @param params vector. The sequence of parameters, a0, a1, b1, c0 respectively}
+\NormalTok{  a0 }\OtherTok{=}\NormalTok{ params[}\DecValTok{1}\NormalTok{] }\CommentTok{\# c in the paper}
+\NormalTok{  a1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{2}\NormalTok{] }\CommentTok{\# b1 in the paper}
+\NormalTok{  b1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{3}\NormalTok{] }\CommentTok{\# a1 in the paper}
+\NormalTok{  c0 }\OtherTok{=}\NormalTok{ params[}\DecValTok{4}\NormalTok{] }\CommentTok{\# C0 in the paper}
+\NormalTok{  gamma }\OtherTok{=}\NormalTok{ a0 }\SpecialCharTok{/}\NormalTok{ c0}
+\NormalTok{  beta }\OtherTok{=}\NormalTok{ a1 }\SpecialCharTok{/}\NormalTok{ c0}
+\NormalTok{  n }\OtherTok{=} \FunctionTok{length}\NormalTok{(x)}
+\NormalTok{  s2 }\OtherTok{=} \FunctionTok{c}\NormalTok{(gamma}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{b1) }\SpecialCharTok{+}\NormalTok{ beta }\SpecialCharTok{*}\NormalTok{ x[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\CommentTok{\# Equation (2.6)}
+\NormalTok{  s2 }\OtherTok{=} \FunctionTok{c}\NormalTok{(s2, gamma }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ b1) }\SpecialCharTok{+}\NormalTok{ beta }\SpecialCharTok{*}\NormalTok{ x[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ beta }\SpecialCharTok{*} \FunctionTok{cumsum}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{b1}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(n}\SpecialCharTok{:}\DecValTok{1}\NormalTok{))[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(n}\DecValTok{{-}2}\NormalTok{)])}
+\NormalTok{  ll }\OtherTok{=} \FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{log}\NormalTok{(x[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{n]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(s2)))}
+  \ControlFlowTok{if}\NormalTok{ (a0}\SpecialCharTok{\textgreater{}=}\DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ a1 }\SpecialCharTok{\textgreater{}=} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ b1 }\SpecialCharTok{\textgreater{}=} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ a1}\SpecialCharTok{+}\NormalTok{b1 }\SpecialCharTok{\textless{}} \DecValTok{1} \SpecialCharTok{\&\&}\NormalTok{ c0 }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{ }\CommentTok{\# Constraint for GARCH}
+    \FunctionTok{return}\NormalTok{(ll)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{return}\NormalTok{(}\FloatTok{1e+09}\NormalTok{)\}\}}
+
+\NormalTok{garch\_lade }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+  \CommentTok{\#\textquotesingle{} Optimisation for LADE.}
+  \CommentTok{\#\textquotesingle{} @param x vector. An array to be estimated}
+\NormalTok{  params }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{) }\CommentTok{\# initial parameters for optimisation}
+\NormalTok{  result }\OtherTok{=} \FunctionTok{optim}\NormalTok{(params, lade\_mle, }\AttributeTok{x=}\NormalTok{x, }\AttributeTok{gr=}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{method =} \FunctionTok{c}\NormalTok{(}\StringTok{"L{-}BFGS{-}B"}\NormalTok{))}
+\NormalTok{  res }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{par)}
+  \FunctionTok{row.names}\NormalTok{(res) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"a0"}\NormalTok{,}\StringTok{"a1"}\NormalTok{,}\StringTok{"b1"}\NormalTok{, }\StringTok{"C0"}\NormalTok{)}
+\NormalTok{  res[}\StringTok{"{-}LL"}\NormalTok{, ] }\OtherTok{=}\NormalTok{ result}\SpecialCharTok{$}\NormalTok{value}
+  \FunctionTok{return}\NormalTok{(res)\}}
+\end{Highlighting}
+\end{Shaded}
+
+To check whether LADE function operates, the Laplace random variable
+generator function laplce\_rv is defined.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{laplce\_rv }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{1}\NormalTok{) \{}
+  \CommentTok{\#\textquotesingle{} Laplace r.v. generator, source: Wikipedia}
+  \CommentTok{\#\textquotesingle{} @param n int. A number of samples}
+  \CommentTok{\#\textquotesingle{} @param mu float. Location parameter}
+  \CommentTok{\#\textquotesingle{} @param lam float. Scale parameter}
+\NormalTok{  p }\OtherTok{=} \FunctionTok{runif}\NormalTok{(n)}
+\NormalTok{  x1 }\OtherTok{=}\NormalTok{ b }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ p) }\SpecialCharTok{+}\NormalTok{ mu}
+\NormalTok{  x2 }\OtherTok{=} \SpecialCharTok{{-}}\NormalTok{b }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p)) }\SpecialCharTok{+}\NormalTok{ mu}
+\NormalTok{  x1[x1}\SpecialCharTok{\textgreater{}}\NormalTok{mu] }\OtherTok{=} \DecValTok{0}
+\NormalTok{  x2[x2}\SpecialCharTok{\textless{}=}\NormalTok{mu] }\OtherTok{=} \DecValTok{0}
+  \FunctionTok{return}\NormalTok{(x1 }\SpecialCharTok{+}\NormalTok{ x2)\}}
+\CommentTok{\# Simulate GARCH (1,1) Series with normal distribution}
+\NormalTok{lp\_x }\OtherTok{=} \FunctionTok{simulate\_garch}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{, }\FloatTok{0.7}\NormalTok{, }\FloatTok{0.2}\NormalTok{), }\DecValTok{100}\NormalTok{, }\FunctionTok{laplce\_rv}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{garch\_lade}\NormalTok{(lp\_x), }\AttributeTok{caption=}\StringTok{"GARCH LADE"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lr@{}}
+\caption{GARCH LADE}\tabularnewline
+\toprule
+& result.par \\
+\midrule
+\endfirsthead
+\toprule
+& result.par \\
+\midrule
+\endhead
+a0 & 0.1046590 \\
+a1 & 0.0216791 \\
+b1 & 0.0957210 \\
+C0 & 0.2231011 \\
+-LL & 177.3914947 \\
+\bottomrule
+\end{longtable}
+
+Based on the result above, the defined LADE function works as intended
+but the accuracy of the estimator needs to be tested and this will be
+further discussed in the next part (e).
+
+\hypertarget{e}{%
+\subsection{e}\label{e}}
+
+The paper illustrates that LADE function works better when the sample
+distribution is closer to Laplace distribution. To evaluate this, GARCH
+simulations with different innovation distributions are examined to
+validate the legitimacy of the statement from the paper. In line with
+the paper, 6 different GARCH(1,1) of \(\epsilon_t\) distribution will be
+assessed:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  N(0,1)
+\item
+  t with DoF=3
+\item
+  Skewed t with DoF=6
+\item
+  Skewed t with DoF=3
+\item
+  Laplace with mu=0 and b=1
+\item
+  Laplace with log
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{skewed\_t\_rv }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n, dof) \{}
+  \CommentTok{\#\textquotesingle{} Skewed t r.v. generator}
+  \CommentTok{\#\textquotesingle{} @param n int. A number of samples}
+  \CommentTok{\#\textquotesingle{} @param dof int. Degrees of freedom}
+\NormalTok{  v0 }\OtherTok{=} \FunctionTok{abs}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n))}
+\NormalTok{  v1 }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(n)}
+\NormalTok{  v2 }\OtherTok{=} \FunctionTok{rchisq}\NormalTok{(n, dof)}
+\NormalTok{  (}\FloatTok{0.8} \SpecialCharTok{*}\NormalTok{ v0 }\SpecialCharTok{+} \FloatTok{0.6} \SpecialCharTok{*}\NormalTok{ v1) }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(v2 }\SpecialCharTok{/}\NormalTok{ dof)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{=} \DecValTok{1000}
+\NormalTok{cases }\OtherTok{=} \FunctionTok{list}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n), }\FunctionTok{rt}\NormalTok{(n, }\DecValTok{3}\NormalTok{), }\FunctionTok{skewed\_t\_rv}\NormalTok{(n, }\DecValTok{6}\NormalTok{), }\FunctionTok{skewed\_t\_rv}\NormalTok{(n, }\DecValTok{3}\NormalTok{), }\FunctionTok{laplce\_rv}\NormalTok{(n, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{1}\NormalTok{), }\FunctionTok{exp}\NormalTok{(}\FunctionTok{laplce\_rv}\NormalTok{(n, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{1}\NormalTok{))) }\CommentTok{\# Distribution List (Total 6 cases)}
+\FunctionTok{names}\NormalTok{(cases) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"N(0,1)"}\NormalTok{, }\StringTok{"t with DoF=3"}\NormalTok{, }\StringTok{"Skewed t with DoF=6"}\NormalTok{, }\StringTok{"Skewed t with DoF=3"}\NormalTok{, }\StringTok{"Laplace with mu=0 and b=1"}\NormalTok{, }\StringTok{"Laplace with log"}\NormalTok{) }\CommentTok{\# Distribution Name}
+\end{Highlighting}
+\end{Shaded}
+
+Skewed t and Laplace distributions are needed. Laplace r.v. generator
+function is shown in (d). For skewed t distribution, we are going to
+implement the same function as it is. The simulation is run for 200
+replications as in the paper. And the paper utilises the estimation
+errors:
+
+\[ \epsilon_{Estimator}=|\hat\alpha_1/\hat\alpha_0-\alpha_1/\alpha_0|+|\hat b_1-b_1|\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ee\_func }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(param\_hat, param\_r) \{}
+  \CommentTok{\#\textquotesingle{} Estimation error function.}
+  \CommentTok{\#\textquotesingle{} @param param\_hat vector. A vector of estimated parameters}
+  \CommentTok{\#\textquotesingle{} @param param\_r vector. A vector of true parameters}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{abs}\NormalTok{(param\_hat[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{/}\NormalTok{param\_hat[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{param\_r[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{/}\NormalTok{param\_r[}\DecValTok{1}\NormalTok{]) }\SpecialCharTok{+} \FunctionTok{abs}\NormalTok{(param\_hat[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{param\_r[}\DecValTok{3}\NormalTok{]))\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{params }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.3}\NormalTok{)}
+\NormalTok{res }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow=}\FunctionTok{length}\NormalTok{(cases), }\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (case\_n }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(cases))\{}
+\NormalTok{  d }\OtherTok{=}\NormalTok{ cases[[case\_n]] }\CommentTok{\# Each case distribution}
+\NormalTok{  e\_gmle }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
+\NormalTok{  e\_lade }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{    x }\OtherTok{=} \FunctionTok{simulate\_garch}\NormalTok{(params, n, d)}
+\NormalTok{    gmle\_res }\OtherTok{=} \FunctionTok{garch\_gmle}\NormalTok{(x)}
+\NormalTok{    lade\_res }\OtherTok{=} \FunctionTok{garch\_lade}\NormalTok{(x)}
+\NormalTok{    eps\_gmle }\OtherTok{=} \FunctionTok{ee\_func}\NormalTok{(}\FunctionTok{as.vector}\NormalTok{(gmle\_res[,}\DecValTok{1}\NormalTok{]), params)}
+\NormalTok{    eps\_lade }\OtherTok{=} \FunctionTok{ee\_func}\NormalTok{(}\FunctionTok{as.vector}\NormalTok{(lade\_res[,}\DecValTok{1}\NormalTok{]), params)}
+\NormalTok{    e\_gmle }\OtherTok{=} \FunctionTok{c}\NormalTok{(e\_gmle, eps\_gmle)}
+\NormalTok{    e\_lade }\OtherTok{=} \FunctionTok{c}\NormalTok{(e\_lade, eps\_lade)}
+\NormalTok{  \}}
+\NormalTok{  res[case\_n, ] }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{mean}\NormalTok{(e\_gmle), }\FunctionTok{mean}\NormalTok{(e\_lade))}
+\NormalTok{\}}
+\NormalTok{res }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(res)}
+\FunctionTok{row.names}\NormalTok{(res) }\OtherTok{=} \FunctionTok{names}\NormalTok{(cases)}
+\FunctionTok{colnames}\NormalTok{(res) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Epsilon\_GMLE"}\NormalTok{, }\StringTok{"Epsilon\_LADE"}\NormalTok{)}
+\FunctionTok{kable}\NormalTok{(res, }\AttributeTok{caption=}\StringTok{"Estimation Error by Distribution"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrr@{}}
+\caption{Estimation Error by Distribution}\tabularnewline
+\toprule
+& Epsilon\_GMLE & Epsilon\_LADE \\
+\midrule
+\endfirsthead
+\toprule
+& Epsilon\_GMLE & Epsilon\_LADE \\
+\midrule
+\endhead
+N(0,1) & 0.4344818 & 0.9231015 \\
+t with DoF=3 & 3.1802977 & 0.7636113 \\
+Skewed t with DoF=6 & 0.6013738 & 0.8903284 \\
+Skewed t with DoF=3 & 1.5905905 & 0.6012284 \\
+Laplace with mu=0 and b=1 & 1.8208587 & 0.8579272 \\
+Laplace with log & 1.2568542 & 0.7124185 \\
+\bottomrule
+\end{longtable}
+
+Based on the simulated results, the estimation error of GMLE is lower
+for innovations with N(0,1) and t(3). Meanwhile, LADE shows lower error
+for the non-normal distributions, suggesting that LADE is preferred
+method for GARCH series estimation for Laplace distribution. To
+conclude, this statistical result is consistent with the findings in the
+paper.
+
+\hypertarget{q2}{%
+\section{Q2}\label{q2}}
+
+In this report, I have used time series analysis to introduce a model
+that explains and predicts the market behaviour of Bitcoin, the longest
+running and most well known cryptocurrency.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+The time series plots of both volume and price of BTC indicate the
+dramatic trend changes as well as the extreme volatility clustering
+aspects in the recent observations, which reflect the well-known
+volatility \& instability of BTC compared to other main-stream financial
+products such as stocks or bonds.
+
+As the main focus of this report is to model and capture the rapid trend
+changes of BTC, the stable periods in the first 2 years are going to be
+excluded and data after January 2017 where BTC reached USD 1,000 mark
+for the first time in 3 years is going to be examined.
+
+Compared to the original price time series (left), the log-transformed
+price series shows a significant improvement in terms of the lower
+variance of time series with mitigated dramatic trend change. In
+addition, log transformation prevents us from violating the statistical
+assumption that the product of normally distributed variables is not
+normal as the sum of normally distributed variables (log-series) is
+still normal. Hence, log-transformed price series is going to be
+examined.
+
+\begin{longtable}[]{@{}lr@{}}
+\caption{Summary Statistics: BTC Price}\tabularnewline
+\toprule
+& BTC-USD.Adjusted \\
+\midrule
+\endfirsthead
+\toprule
+& BTC-USD.Adjusted \\
+\midrule
+\endhead
+Mean & 11300.00 \\
+Median & 7950.00 \\
+SD & 12800.00 \\
+Min & 778.00 \\
+Max & 63500.00 \\
+Skew & 2.55 \\
+Kurt & 8.83 \\
+\#Obs & 1610.00 \\
+\bottomrule
+\end{longtable}
+
+Above summary statistics of BTC adjusted close price illustrates that
+there are 1600+ observations (nearly 5 years) with a huge variance as
+well as a massive range between minimum and maximum.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{verbatim}
+## 
+## ####################### 
+## # KPSS Unit Root Test # 
+## ####################### 
+## 
+## Test is of type: mu with 8 lags. 
+## 
+## Value of test-statistic is: 10.1533 
+## 
+## Critical value for a significance level of: 
+##                 10pct  5pct 2.5pct  1pct
+## critical values 0.347 0.463  0.574 0.739
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Augmented Dickey-Fuller Test
+## 
+## data:  ts_v
+## Dickey-Fuller = -2.1516, Lag order = 12, p-value = 0.5141
+## alternative hypothesis: stationary
+\end{verbatim}
+
+Here, the time series can be decomposed into three components, trend
+cycle (\(T_t\)), seasonal component (\(S_t\)) and random component
+(\(E_t\)), and can be represented as following
+formula:\[Y_t =  T_t + S_t + R_t.\] With this additive decomposition, it
+is possible to separate the random component of the series from other
+two determinant series.
+
+In addition, the Augmented Dickey-Fuller test and KPSS test statistics
+attest that the log price series is non-stationary. KPSS test statistic
+is much greater than p-value at 1\%, meaning that there is a strong
+evidence of non-stationarity and ADF test statistic cannot reject the
+null hypothesis of non-stationarity as well. This indicates that the
+stationary time series is required. Differencing the integrated series
+could help stabilise the mean of a time series by removing trend and
+seasonality. Hence, the log return series is going to be examined.
+Following formula represents the log return series:
+\[ \log(return_t)= \log(price_t)-\log(price_{t-1})=\Delta \log(price_t) \sim I(0) (Expected, Ideal)\]
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\begin{verbatim}
+## 
+## ####################### 
+## # KPSS Unit Root Test # 
+## ####################### 
+## 
+## Test is of type: mu with 8 lags. 
+## 
+## Value of test-statistic is: 0.1476 
+## 
+## Critical value for a significance level of: 
+##                 10pct  5pct 2.5pct  1pct
+## critical values 0.347 0.463  0.574 0.739
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Augmented Dickey-Fuller Test
+## 
+## data:  ts_v
+## Dickey-Fuller = -10.432, Lag order = 12, p-value = 0.01
+## alternative hypothesis: stationary
+\end{verbatim}
+
+Time series plot of log return seems to be very close to a stationary
+process without trend nor a sign of increasing variance. This indicates
+that the first differencing has been successful at stabilising the
+integrated series. ADF test and KPSS test statistics further attest the
+stationarity. KPSS test statistic is much lower than p-value at 10\%,
+meaning that there is a very weak evidence of non-stationarity and ADF
+test statistic rejects the null hypothesis of non-stationarity at 1\% as
+well.
+
+\begin{verbatim}
+## 
+##  Box-Ljung test
+## 
+## data:  logret
+## X-squared = 1.7894, df = 1, p-value = 0.181
+\end{verbatim}
+
+According to the Ljung-Box test, p-value does not reject the null
+hypothesis, indicates that the log return series is independently
+distributed, allowing this study to continue with a solid motivation.
+
+\hypertarget{arma-approach}{%
+\subsection{ARMA Approach}\label{arma-approach}}
+
+The earlier efforts of securing the stationary property of time series
+comes from the basic setting that ARMA models require stationary data.
+In order to choose the right p and q terms of ARMA(p,q) model, the
+identification of the model using ACF \& PACF (Correlogram) is needed.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+Upon reviewing the ACF plot for the log return, the cutoff for strong
+correlation is at 2 (or potentially 0) and the cutoff point of PACF
+indicates lag 1. The suggested model to fit ARMA model is ARMA(2,1).
+This will be further validated by comparing with grid-search method.
+
+\begin{verbatim}
+##                 AIC               BIC Specification
+## 1 -5547.70978858816 -5520.79605633947         3,1,1
+## 2 -5547.97629051928 -5515.67981182084         3,1,2
+## 3 -5549.63141412985 -5528.10042833089         1,1,2
+## 4 -5549.72656836021 -5528.19558256126         3,1,0
+## 5 -5549.75625043726 -5538.99075753778         1,1,0
+## 6 -5550.89738984375 -5534.74915049453         1,1,1
+## 7 -5551.70728628242 -5535.55904693321         2,1,0
+## 8 -5552.15840696638 -5530.62742116743         2,1,1
+## 9 -5552.49785324462 -5525.58412099592         2,1,2
+\end{verbatim}
+
+According to the grid search result, the best fit model specification is
+ARMA(3,1). However, compared to the initial model guess, ARMA(2,1), the
+difference in AIC \& BIC is marginal. Hence, ARMA(2,1) will be
+considered as the pilot model for ARMA approach.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{verbatim}
+## 
+##  Ljung-Box test
+## 
+## data:  Residuals from ARIMA(2,1,1)
+## Q* = 13.448, df = 7, p-value = 0.06192
+## 
+## Model df: 3.   Total lags used: 10
+\end{verbatim}
+
+Surprisingly, the actual vs fitted plot shows that the fitted values of
+model tend to follow the trend changes of the actual log price series.
+However,based on the Ljung-Box test and ACF plot of model residuals, it
+can be concluded that this ARMA model is not appropriate for forecasting
+since its residuals do not show white noise behavior although they are
+uncorrelated against each other.
+
+\begin{longtable}[]{@{}rr@{}}
+\caption{Variance Ratio Test}\tabularnewline
+\toprule
+stat & sum \\
+\midrule
+\endfirsthead
+\toprule
+stat & sum \\
+\midrule
+\endhead
+27.18773 & 2.301008 \\
+\bottomrule
+\end{longtable}
+
+In addition, the variance ratio test result further supports the need of
+(G)ARCH type of modelling as the p-value is a lot greater than the
+significance level at 5\%, meaning in-equal variance. Hence, the next
+section is going to delve into the (G)ARCH modelling techniques that can
+remedy this ARMA modelling.
+
+\hypertarget{generalised-autoregressive-conditional-heteroskedasticity-model-garch}{%
+\subsection{(Generalised) Autoregressive conditional heteroskedasticity
+model
+(G)ARCH}\label{generalised-autoregressive-conditional-heteroskedasticity-model-garch}}
+
+The earlier ARIMA model showed a satisfactory result in the actual vs
+fitted tracking of log price series. However, the detailed analysis with
+first differenced series (log return) did not seem to capture the
+magnitude of volatility observed. The (G)ARCH model concerns time series
+with time-varying heteroskedasticity, where variance is conditional on
+the information existing at a given in time. This model has a foundation
+on making volatility clustering and will be effective in terms of
+capturing the empirical behaviour of volatility compared to ARIMA model.
+As a starting point, this report is going to explore the log return
+series with ARCH model and expand the model specification if applicable.
+In terms of model comparison, the performance metrics such as AIC and
+BIC are going to be examined as well as the pattern of conditional
+volatility compared to the movement of absolute log return series.
+
+\hypertarget{arch}{%
+\subsubsection{ARCH}\label{arch}}
+
+ARCH model assumes that the conditional mean of the error term in a time
+series model is constant (zero) but the conditional variance is not.
+First, the specific test is required to understand if the time series
+has the ARCH effects. Hence, this report is taking ARCH LM-test that
+null hypothesis is no ARCH effects.
+
+\begin{verbatim}
+## Q(m) of squared series(LM test):  
+## Test statistic:  12.65589  p-value:  0.0003743839 
+## Rank-based Test:  
+## Test statistic:  55.48472  p-value:  9.414691e-14
+\end{verbatim}
+
+The result of LM statistic, equal to 12.66 and the p-value is smaller
+than 5\%. This indicates that the null hypothesis of no ARCH effects is
+rejected, concluding that the series has ARCH effects. This approves the
+ARCH modelling motivation. Using rugarch pcakge, the order of ARCH(p)
+model is going to be determined by iterating the model construction for
+\(p=1,2,…n\) . (ARCH(1) is omitted due to error.)
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{ARCH(p) Model Metrics}\tabularnewline
+\toprule
+& AIC & BIC & SIC & HQIC \\
+\midrule
+\endfirsthead
+\toprule
+& AIC & BIC & SIC & HQIC \\
+\midrule
+\endhead
+ARCH(2) & -3.486387 & -3.472997 & -3.486399 & -3.481416 \\
+ARCH(3) & -3.497476 & -3.480738 & -3.497495 & -3.491262 \\
+ARCH(4) & -3.564654 & -3.544569 & -3.564682 & -3.557198 \\
+\bottomrule
+\end{longtable}
+
+According to the iterative results of ARCH(1 \textasciitilde{} 4)
+models, the model evaluation metrics get better as the order of p
+increases. This suggests the higher order ARCH(p) or GARCH(1,1) model.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+According to the conditional SD vs absolute log return series plot, it
+seems to capture the some of the largest historic volatility, but is not
+successful at replicating the most of significant historic volatility.
+The historic volatility seems to be more persistent. To overcome the
+problem of the persistence nature of volatility that a simple ARCH(p)
+model cannot capture, generalised ARCH (GARCH) model needs to be used.
+Hence, different versions of GARCH model specifications are going to be
+investigated in the next section.
+
+\hypertarget{standard-garch}{%
+\subsubsection{Standard GARCH}\label{standard-garch}}
+
+Again, using rugarch package, the Standard GARCH (1,1) model with normal
+distribution is constructed.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+GARCH(1,1) still doesn't seem to track the historic volatility movement
+that well. Normal distribution is not consistent with stock market
+phenomenon. To account this, skewed-student t distribution (SSTD) is
+selected which tends to explain the stock price movement better.
+
+\hypertarget{standard-garch-with-skewed-student-t-distribution}{%
+\subsubsection{Standard GARCH with Skewed Student t
+distribution}\label{standard-garch-with-skewed-student-t-distribution}}
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+Based on the information criteria results, GARCH(1,1) model with SSTD
+performs much better than the earlier models. This indicates that BTC
+price movement can be explained further with SSTD rather than the normal
+distribution.
+
+In the market, the leverage effect is a very well-recognised phenomena
+that the near future volatility tends to be larger when the today's
+return is negative comparing to the positive return, meaning the
+negative returns induce the higher leverage and volatility. One way to
+remedy this is to use Exponential GARCH (EGARCH) model, which does not
+assume the symmetry property. Or the threshold GARCH, aka GJR-GARCH.
+
+\hypertarget{egarch-gjr-garch-threshold-garch}{%
+\subsubsection{EGARCH / GJR-GARCH (Threshold
+GARCH)}\label{egarch-gjr-garch-threshold-garch}}
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+The conditional volatility curves for both models do not show a
+significant improvement in tracking the volatility clustering pattern
+better compared to the earlier models. To elaborate further,
+GARCH-in-mean model can be considered. In the finance theory, the return
+of stocks (BTC in this case), may depend on its volatility. To model
+this phenomena, the GARCH-in-mean (GARCH-M) model adds a
+heteroskedasticity term into the mean equation. The most widely-used and
+simplistic model is AR(1) model. The sign of AR parameter can be
+interpreted as following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Positive: When the return is above its mean, the following sequence
+  will get the momentum of this news and stay above mean as well.
+\item
+  Negative: When the return is below its mean, then a higher than
+  average return is followed by a lower than average return. This means
+  that the market shows an overreaction to the news.
+\end{enumerate}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{Model Performance Metrics}\tabularnewline
+\toprule
+& AIC & BIC & SIC & HQIC \\
+\midrule
+\endfirsthead
+\toprule
+& AIC & BIC & SIC & HQIC \\
+\midrule
+\endhead
+(Normal) GARCH(1,1) & -3.577977 & -3.564587 & -3.577989 & -3.573006 \\
+(SSTD) GARCH(1,1) & -3.836887 & -3.816802 & -3.836914 & -3.829430 \\
+EGARCH & -3.854058 & -3.830626 & -3.854096 & -3.845359 \\
+GJR-GARCH & -3.836233 & -3.812801 & -3.836271 & -3.827534 \\
+GJR-GARCH-M & -3.837085 & -3.810305 & -3.837134 & -3.827143 \\
+\bottomrule
+\end{longtable}
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+The GJR-GARCH-M model shows a little improvement compared to the earlier
+EGARCH and GJR-GARCH models. In order to achieve a robust modelling
+approach, top 3 models are going to be estimated and then compared with
+each other.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+By inspecting the top 3 different models, it is notable to see that
+unlike the final model performance metrics table showed, the second-best
+GJR-GARCH model tends to be better at capturing the volatility in terms
+of the magnitude.
+
+\hypertarget{forecasting-the-volatility}{%
+\subsection{Forecasting the
+volatility}\label{forecasting-the-volatility}}
+
+So far, the entire efforts have been concentrated on the selection of
+the appropriate model. In this section, the model forecasting \&
+evaluation are going to be discussed. First of all, the data split
+between development and evaluation (train \& test) is essential to
+ensure the un-biased modelling. In order to reflect the price volatility
+during COVID-19, the cohort date, 2020 Dec, is selected to include the
+one year horizon after the first recognition of COVID-19.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-28-1.pdf}
+
+To evaluate the performance of the model in terms of the production
+(forecasting), 5 different simulated price series are generated. The
+forecast vs actual plot shows that the actual price series sits within
+the range of possible simulations that EGARCH process can generate.
+However, the caveat is that this doesn't necessarily mean the model has
+a great predictive power.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+To understand whether the model can estimate the time series, n-step
+ahead forecast is used to compare with the actual time series of our
+interest. According to the chart, it seems like the model can cover the
+most of actual time series except those points with abnormal price
+movements.
+
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
+
+In this report, different types of time series model have been explored
+to estimate the rapid \& dramatic trend changes observed in BTC price.
+According to the result, GARCH type models showed the acceptable
+performance at capturing the observed fluctuations in volatility.
+However, the proposed GJR-GARCH model still does not seem to capture the
+entire dramatic price movements of BTC. This is one of the main
+challenges associated with the recent abnormal economic periods under
+COVID-19 as well as the unique nature of cryptocurrency market. In terms
+of future research, different modelling techniques including the
+Long-Short-Term-Memory (LSTM) model and other advanced MLs such as
+XGBoost regression, SVM regression and others can be examined and
+compare the results to the conventional time series modelling approach.
+
+\hypertarget{q3}{%
+\section{Q3}\label{q3}}
+
+In today's blog post, we are going to delve into the impact COVID-19 on
+the major global stock markets.
+
+As seen in the news, almost every aspect of daily life and the global
+economy have been affected by this unprecedented global virus spread and
+economies across the world have been reflecting very different reactions
+according to each individual country's political measures and success of
+virus containment. On top of the virus dispersion, the unprecedented
+fiscal policies in major economies have changed the natural flow
+dynamics of financial market and the agents' behaviours that we used to
+know and understand. However, it is difficult to understand when and how
+these changes are happened.
+
+The stock market index may not be the best indicator for understanding
+the global financial impact of COVID-19, but it is certainly the most
+representative and approachable measure of the financial market reaction
+compared to all the other finance-related indexes. Therefore, the stock
+market indexes are chosen to examine the following aspects:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Has COVID-19 increased (decrease) the market volatility?
+\item
+  Has COVID-19 caused the instability in the market movement prediction?
+  In other words, has there been any structural breaks?
+\item
+  Can we still create the model to provide the consistent estimation of
+  the price volatility after COVID?
+\end{enumerate}
+
+Top 5 stock market indexes for today's blog are selected based on the
+global economic presence of the stock market within the continent. Asia:
+Nikkei225 / SSE Composite Index, Europe: DAX / FTSE100 and America:
+S\&P500.
+
+World-wide data for confirmed new cases and new deaths of COVID-19 comes
+from Our World in Data repository and COVID-19 Data Repository by the
+Center for Systems Science and Engineering (CSSE) at Johns Hopkins
+University. And all price time series of stock markets come from Yahoo
+Finance.
+
+\hypertarget{data-summary-statistics}{%
+\subsection{Data Summary Statistics}\label{data-summary-statistics}}
+
+\hypertarget{confirmed-cases}{%
+\subsubsection{Confirmed Cases}\label{confirmed-cases}}
+
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\caption{Summary Statistics: Confirmed Cases}\tabularnewline
+\toprule
+& China & Germany & Japan & United.Kingdom & United.States & World \\
+\midrule
+\endfirsthead
+\toprule
+& China & Germany & Japan & United.Kingdom & United.States & World \\
+\midrule
+\endhead
+Mean & 183.0 & 7460.00 & 1500.00 & 9100.00 & 6.73e+04 & 3.43e+05 \\
+Median & 16.0 & 2980.00 & 710.00 & 3240.00 & 4.72e+04 & 2.92e+05 \\
+SD & 907.0 & 9140.00 & 1810.00 & 13000.00 & 6.45e+04 & 2.51e+05 \\
+Min & -1.0 & 0.00 & 0.00 & -4790.00 & 0.00e+00 & 0.00e+00 \\
+Max & 15100.0 & 49000.00 & 7910.00 & 68200.00 & 3.00e+05 & 9.06e+05 \\
+Skew & 10.8 & 1.45 & 1.51 & 2.11 & 1.45e+00 & 3.19e-01 \\
+Kurt & 159.0 & 4.53 & 4.52 & 7.39 & 4.32e+00 & 1.97e+00 \\
+\#Obs & 494.0 & 494.00 & 494.00 & 494.00 & 4.94e+02 & 4.94e+02 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{confirmed-deaths}{%
+\subsubsection{Confirmed Deaths}\label{confirmed-deaths}}
+
+\begin{longtable}[]{@{}lrrrrrr@{}}
+\caption{Summary Statistics: Confirmed Deaths}\tabularnewline
+\toprule
+& China & Germany & Japan & United.Kingdom & United.States & World \\
+\midrule
+\endfirsthead
+\toprule
+& China & Germany & Japan & United.Kingdom & United.States & World \\
+\midrule
+\endhead
+Mean & 9.35 & 179.00 & 26.10 & 259.00 & 1200.00 & 7.15e+03 \\
+Median & 0.00 & 60.50 & 11.00 & 76.00 & 959.00 & 6.27e+03 \\
+SD & 63.20 & 263.00 & 33.40 & 358.00 & 984.00 & 4.30e+03 \\
+Min & 0.00 & -31.00 & -1.00 & 0.00 & 0.00 & 0.00e+00 \\
+Max & 1290.00 & 1730.00 & 248.00 & 1830.00 & 4480.00 & 1.79e+04 \\
+Skew & 17.20 & 2.22 & 2.03 & 1.78 & 1.17 & 2.59e-01 \\
+Kurt & 344.00 & 8.53 & 9.03 & 5.86 & 3.99 & 2.41e+00 \\
+\#Obs & 494.00 & 494.00 & 494.00 & 494.00 & 494.00 & 4.94e+02 \\
+\bottomrule
+\end{longtable}
+
+Based on the summary statistics of confirmed cases \& deaths of
+COVID-19, there are no outliers apart from the negative minimum values
+in certain countries. These negative minimum values in confired cases \&
+deaths are corrections to rectify the known mistakes \& errors. One
+caveat from this is that those countries (especially UK) with outliers
+may not result an accurate analysis. Hence, instead of utilising the
+series of individual country, the world aggregate series is going to be
+used as a proxy for COVID impact.
+
+\hypertarget{stock-market-indexes-pre-covid-19}{%
+\subsubsection{Stock Market Indexes (Pre
+COVID-19)}\label{stock-market-indexes-pre-covid-19}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.07}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.14}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.14}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.13}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.14}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.15}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.21}}@{}}
+\caption{Summary Statistics: Pre COVID-19}\tabularnewline
+\toprule
+& GSPC.Adjusted & FTSE.Adjusted & DJI.Adjusted & N225.Adjusted &
+GDAXI.Adjusted & X000001.SS.Adjusted \\
+\midrule
+\endfirsthead
+\toprule
+& GSPC.Adjusted & FTSE.Adjusted & DJI.Adjusted & N225.Adjusted &
+GDAXI.Adjusted & X000001.SS.Adjusted \\
+\midrule
+\endhead
+Mean & 0.00105 & 4.62e-04 & 7.83e-04 & 6.91e-04 & 8.72e-04 & 7.09e-04 \\
+Median & 0.00135 & 8.25e-04 & 1.06e-03 & 9.03e-04 & 1.89e-03 &
+4.68e-04 \\
+SD & 0.00756 & 7.68e-03 & 7.58e-03 & 8.74e-03 & 8.92e-03 & 1.20e-02 \\
+Min & -0.03070 & -3.71e-02 & -3.14e-02 & -3.10e-02 & -3.83e-02 &
+-5.47e-02 \\
+Max & 0.02100 & 2.20e-02 & 2.02e-02 & 2.49e-02 & 2.78e-02 & 5.30e-02 \\
+Skew & -1.21000 & -7.87e-01 & -1.15e+00 & -4.49e-02 & -8.43e-01 &
+-8.86e-02 \\
+Kurt & 6.97000 & 6.00e+00 & 6.73e+00 & 3.88e+00 & 5.32e+00 & 7.03e+00 \\
+\#Obs & 213.00000 & 2.13e+02 & 2.13e+02 & 2.13e+02 & 2.13e+02 &
+2.13e+02 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{stock-market-indexes-post-covid-19}{%
+\subsubsection{Stock Market Indexes (Post
+COVID-19)}\label{stock-market-indexes-post-covid-19}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.07}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.14}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.14}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.13}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.14}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.15}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.21}}@{}}
+\caption{Summary Statistics: Post COVID-19}\tabularnewline
+\toprule
+& GSPC.Adjusted & FTSE.Adjusted & DJI.Adjusted & N225.Adjusted &
+GDAXI.Adjusted & X000001.SS.Adjusted \\
+\midrule
+\endfirsthead
+\toprule
+& GSPC.Adjusted & FTSE.Adjusted & DJI.Adjusted & N225.Adjusted &
+GDAXI.Adjusted & X000001.SS.Adjusted \\
+\midrule
+\endhead
+Mean & 5.82e-04 & -3.91e-04 & 0.00033 & 5.61e-04 & 3.08e-04 &
+5.70e-04 \\
+Median & 1.81e-03 & 3.86e-04 & 0.00158 & 5.30e-04 & 7.07e-04 &
+6.92e-04 \\
+SD & 2.14e-02 & 1.81e-02 & 0.02270 & 1.66e-02 & 2.02e-02 & 1.32e-02 \\
+Min & -1.36e-01 & -1.22e-01 & -0.14800 & -6.47e-02 & -1.39e-01 &
+-8.37e-02 \\
+Max & 8.58e-02 & 8.30e-02 & 0.10200 & 7.44e-02 & 9.89e-02 & 7.27e-02 \\
+Skew & -1.35e+00 & -1.20e+00 & -1.39000 & 1.20e-01 & -1.09e+00 &
+-5.95e-01 \\
+Kurt & 1.31e+01 & 1.25e+01 & 14.10000 & 6.39e+00 & 1.41e+01 &
+1.15e+01 \\
+\#Obs & 2.90e+02 & 2.90e+02 & 290.00000 & 2.90e+02 & 2.90e+02 &
+2.90e+02 \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lrrr@{}}
+\caption{Standard Deviation of Index}\tabularnewline
+\toprule
+& (Post) SD & (Pre) SD & Post / Pre \\
+\midrule
+\endfirsthead
+\toprule
+& (Post) SD & (Pre) SD & Post / Pre \\
+\midrule
+\endhead
+GSPC.Adjusted & 0.0214 & 0.00756 & 2.84 \\
+FTSE.Adjusted & 0.0181 & 0.00768 & 2.35 \\
+DJI.Adjusted & 0.0227 & 0.00758 & 3.00 \\
+N225.Adjusted & 0.0167 & 0.00874 & 1.91 \\
+GDAXI.Adjusted & 0.0202 & 0.00892 & 2.27 \\
+X000001.SS.Adjusted & 0.0132 & 0.01200 & 1.10 \\
+\bottomrule
+\end{longtable}
+
+Summary statistics of index returns are separated based on the cohort of
+COVID-19. Based on simple inspection, all the indexes show greater
+(e.g., mostly 2x larger, pre COVID GSPC: -3\% vs post COVID GSPC:
+-13.6\%) maximum draw-down as well as the lower mean return (e.g., pre
+COVID GSPC: 0.1\% vs post COVID GSPC: 0.058\%) in post COVID-19 compared
+to pre COVID-19. In addition, standard deviation of each index series
+increased dramatically as well. This indicates that there has been an
+adverse effect material enough to change the market characteristics
+across the globe and the market instability has increased after
+COVID-19.
+
+\hypertarget{graphical-analysis}{%
+\subsection{Graphical Analysis}\label{graphical-analysis}}
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-35-1.pdf}
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+The plot of confirmed COVID-19 cases \& deaths indicate that there is a
+lagging relationship between the confirmed cases and deaths.
+Intuitively, the confirmed cases are the leading factor of deaths and
+magnitude of deaths count is not as big as the confirmed cases. The
+first singificant increase in both counts is at 2020-Mar then the
+confirmed cases gradually increase wherease the death toll remains the
+same level. The peak of confirmed cases is at 2020-Dec and 2020-Jan for
+the death toll. The number of cases \& death both start to deflate right
+after the peak but rebounce around 2021-Feb and 2021-Mar.~The confirmed
+cases reach another peak during 2021-May whereas the death toll records
+the second largest peak at the same time of the year.
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-37-1.pdf}
+
+Based on the visual inspection on the major stock market movements, all
+the markets except SSE Composite Index crash in 2020-Mar.~This coincides
+with the first increase of both confirmed cases and the death toll. The
+shock caused by COVID-19 caused severe falls in the stock markets around
+the world. According to the BBC news, on 2020-03-31, the Down Jones
+Industrial Average, S\&P500 and FTSE 100 had plunged by 23\%, 20\% and
+25\% respectively, the biggest quarterly drops since 1987. In contrast
+to this, SSE Composite Index had a decline of 2.53\% since the first
+case of COVID-19 was reported in the country. This could be the result
+of Chinese government's strong measures to contain the virus, which can
+be also seen in low number of confiremd cases \& deaths of China in the
+earlier time series analysis. The notable point is that after the COVID
+shock in 2020-Mar, all the major indexes quickly recovered to pre-COVID
+level whereas FTSE100 still did not stay below the pre-COVID level until
+today.
+
+The above visual inspection is very intuitive and simple for general
+understanding on the trends and changes. However, more robust and
+test-driven decisions and assessment would be a value adding point.
+Hence, in order to identify whether there has been a significant impact
+on the stock markets under COVID-19, aforementioned structural break
+tests are going to be examined.
+
+\hypertarget{structural-break-test}{%
+\subsection{Structural Break Test}\label{structural-break-test}}
+
+Structural break test with regressions, also known as CHOW test is first
+introduced by Chow using F-statistics to identify the single break point
+with the assumption that the break-date is known. Since we are
+interested in estimating the timing of the breaks as well as the
+confidence intervals of them, we are going to use Bai and Perron's
+method for detecting a structural break instead of CHOW test. Bai and
+Perrorn proposed a method to estimate the breakpoints and the associated
+confidence intervals in OLS regression with dynamic programming. Using
+this, it is possible to find the structural breakpoints that minimise
+the sum of squared residuals of the model with m+1 segments (optimal
+breakpoints). The model selection strategy is available in the package
+``strucchange''.
+
+There are different types of structural break tests that we can
+formulate based on differing assumptions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  level structural changes
+\item
+  trend structural changes
+\end{enumerate}
+
+In general, financial time series like stock prices evolve over time.
+Hence the trend or polinomial fit structural changes would be more
+relevant than the no-trend fit. However, regardless of practicality of
+the assumption, we start with the simplest form, level structural
+changes for 5 major stock indexes which follows the equation below:
+
+\[ \log(Y_{Index}) \sim Constant\]
+
+As shown in the formula, this type of assumption would suit better with
+the return series, which is believed to be the 0 mean series. Code for
+the level structural break test is shown below:
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.16}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.16}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.14}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.16}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.22}}@{}}
+\caption{Level Structural breakpoints \& dates}\tabularnewline
+\toprule
+GSPC.Adjusted & FTSE.Adjusted & DJI.Adjusted & N225.Adjusted &
+GDAXI.Adjusted & X000001.SS.Adjusted \\
+\midrule
+\endfirsthead
+\toprule
+GSPC.Adjusted & FTSE.Adjusted & DJI.Adjusted & N225.Adjusted &
+GDAXI.Adjusted & X000001.SS.Adjusted \\
+\midrule
+\endhead
+2020-07-09 & 2020-03-05 & 2020-08-05 & 2020-05-29 & 2020-02-27 &
+2020-07-02 \\
+2020-11-30 & 2020-11-10 & 2021-01-05 & 2020-11-13 & 2020-07-01 &
+2020-12-30 \\
+\bottomrule
+\end{longtable}
+
+The above results show the plots of the observed and fitted time series,
+along with confidence intervals for the breakpoints. We examined 2 major
+breakpoint dates and according to the identified breakpoints \& dates,
+COVID-19 shock in 2020-Mar is confirmed to be the structural breakpoint
+for only two indexes (FTSE \& DAX). This could be due to the
+aforementioned no-trend assumption of our test. Referring back to the
+visual inspection of indexes, there is a clear upward linear (or perhaps
+non-linear) trend. To remedy this, we introduce the linear trend
+structural change method, which is believed to be a more realistic
+assumption.
+
+The equation and the code for the trend structural break test follow:
+
+\[ Y_{Index} \sim Trend\]
+
+\includegraphics{ST436_Project_files/figure-latex/unnamed-chunk-40-1.pdf}
+
+Similar to the level structural change case, most of the indexes are
+reaching the minimum BIC when breakpoints (m) = 2. Hence, we explore the
+2 major breakpoint dates.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.16}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.16}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.14}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.16}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.22}}@{}}
+\caption{Trend Structural breakpoints \& dates}\tabularnewline
+\toprule
+GSPC.Adjusted & FTSE.Adjusted & DJI.Adjusted & N225.Adjusted &
+GDAXI.Adjusted & X000001.SS.Adjusted \\
+\midrule
+\endfirsthead
+\toprule
+GSPC.Adjusted & FTSE.Adjusted & DJI.Adjusted & N225.Adjusted &
+GDAXI.Adjusted & X000001.SS.Adjusted \\
+\midrule
+\endhead
+2020-03-06 & 2020-03-06 & 2020-03-06 & 2020-03-05 & 2020-03-06 &
+2019-06-03 \\
+2020-09-03 & 2020-07-22 & 2020-09-04 & 2021-01-07 & 2020-07-27 &
+2020-07-01 \\
+\bottomrule
+\end{longtable}
+
+According to the identified breakpoints \& dates, COVID-19 shock in
+2020-Mar is confirmed to be the significant structural breakpoint for
+all the indexes except SSE Composite Index. As mentioned in the earlier
+section, China was the first country to achieve economic recovery amid
+COVID-19 events and removed the major city lock-downs, backed by its
+rapid and active counter actions against the spread of virus. Hence,
+this unique background of China could have mitigated the COVID-19 shock
+in 2020-Mar.
+
+These finding sheds a light on the following aspects:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Due to the severe COVID-19 shock, the presence of structural break is
+  confirmed.
+\item
+  COVID-19 shock may be a systematic event across the globe but it is
+  not necessarily an inevitable risk considering the case of China.
+\item
+  Due to the structural break, existing statistical models \& analysis
+  that have been used pre COVID-19 will be obsolete, proposing a
+  potential model risk for major businesseses.
+\item
+  The financial market that we used to know, we think we understand,
+  will be no longer the same. This proposes a huge threat at the same
+  time a great opportunity.
+\end{enumerate}
+
+In the Appendix.A, the polinomial fit structural change analysis is
+carried out and further advocates the hypothesis that COVID-19 shock has
+introduced the significant structural break across the countries. In the
+next section, we attempt to model the price volatility using GARCH.
+
+\hypertarget{appendix-all-code-for-this-report-except-q1}{%
+\section{Appendix: All code for this report (Except
+Q1)}\label{appendix-all-code-for-this-report-except-q1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Library Setup}
+\FunctionTok{library}\NormalTok{(readxl)}
+\FunctionTok{library}\NormalTok{(data.table)}
+\FunctionTok{library}\NormalTok{(Hmisc)}
+\FunctionTok{library}\NormalTok{(FSA)}
+\FunctionTok{library}\NormalTok{(strucchange)}
+\FunctionTok{library}\NormalTok{(tseries)}
+\FunctionTok{library}\NormalTok{(forecast)}
+\FunctionTok{library}\NormalTok{(quantmod)}
+\FunctionTok{library}\NormalTok{(knitr)}
+\FunctionTok{library}\NormalTok{(MTS)}
+\FunctionTok{library}\NormalTok{(urca)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(vrtest)}
+\FunctionTok{library}\NormalTok{(moments)}
+\FunctionTok{library}\NormalTok{(rugarch)}
+\NormalTok{simulate\_garch }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(params, n, d)  \{}
+  \CommentTok{\#\textquotesingle{} GARCH(1,1) simulation function for given distribution.}
+  \CommentTok{\#\textquotesingle{} @param params vector. The sequence of parameters, a0, a1, b1 respectively}
+  \CommentTok{\#\textquotesingle{} @param n int. \# of simulation size}
+  \CommentTok{\#\textquotesingle{} @param d vector. Sample population from the designated distribution}
+\NormalTok{  a0 }\OtherTok{=}\NormalTok{ params[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  a1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{2}\NormalTok{]}
+\NormalTok{  b1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{3}\NormalTok{]}
+\NormalTok{  sigma }\OtherTok{=}\NormalTok{ a0 }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ a1 }\SpecialCharTok{{-}}\NormalTok{ b1)}
+\NormalTok{  x0 }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(sigma) }\SpecialCharTok{*}\NormalTok{ d[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  x }\OtherTok{=} \FunctionTok{c}\NormalTok{(x0)}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{2}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{    sigma\_new }\OtherTok{=}\NormalTok{ a0 }\SpecialCharTok{+}\NormalTok{ a1 }\SpecialCharTok{*}\NormalTok{ x0}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ b1 }\SpecialCharTok{*}\NormalTok{ sigma}
+\NormalTok{    x1 }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(sigma\_new) }\SpecialCharTok{*}\NormalTok{ d[i]}
+\NormalTok{    x }\OtherTok{=} \FunctionTok{c}\NormalTok{(x, x1)}
+\NormalTok{    x0 }\OtherTok{=}\NormalTok{ x1}
+\NormalTok{    sigma }\OtherTok{=}\NormalTok{ sigma\_new}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(x)}
+\NormalTok{\}}
+
+\CommentTok{\# Simulate GARCH (1,1) Series with normal distribution}
+\NormalTok{x }\OtherTok{=} \FunctionTok{simulate\_garch}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.3}\NormalTok{) , }\DecValTok{100}\NormalTok{, }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{gmle }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x, params) \{}
+  \CommentTok{\#\textquotesingle{} GMLE function in the paper. }
+  \CommentTok{\#\textquotesingle{} @param x vector. An array to be estimated}
+  \CommentTok{\#\textquotesingle{} @param params vector. The sequence of parameters, a0, a1, b1 respectively}
+\NormalTok{  a0 }\OtherTok{=}\NormalTok{ params[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  a1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{2}\NormalTok{]}
+\NormalTok{  b1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{3}\NormalTok{]}
+\NormalTok{  n }\OtherTok{=} \FunctionTok{length}\NormalTok{(x)}
+\NormalTok{  t\_sig }\OtherTok{=} \FunctionTok{c}\NormalTok{(a0}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{b1) }\SpecialCharTok{+}\NormalTok{ a1 }\SpecialCharTok{*}\NormalTok{ x[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\CommentTok{\# Equation (2.5)}
+\NormalTok{  t\_sig }\OtherTok{=} \FunctionTok{c}\NormalTok{(t\_sig, a0 }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ b1) }\SpecialCharTok{+}\NormalTok{ a1 }\SpecialCharTok{*}\NormalTok{ x[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ a1 }\SpecialCharTok{*} \FunctionTok{cumsum}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{b1}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(n}\SpecialCharTok{:}\DecValTok{1}\NormalTok{))[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(n}\DecValTok{{-}2}\NormalTok{)])}
+\NormalTok{  ll }\OtherTok{=} \FunctionTok{sum}\NormalTok{(x[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{n]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{t\_sig }\SpecialCharTok{+} \FunctionTok{log}\NormalTok{(t\_sig)) }\CommentTok{\# Equation (2.4) in the paper}
+  \ControlFlowTok{if}\NormalTok{ (a0}\SpecialCharTok{\textgreater{}=}\DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ a1 }\SpecialCharTok{\textgreater{}=} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ b1 }\SpecialCharTok{\textgreater{}=} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ (a1}\SpecialCharTok{+}\NormalTok{b1) }\SpecialCharTok{\textless{}} \DecValTok{1}\NormalTok{) \{ }\CommentTok{\# Required constraint for GARCH equation}
+    \FunctionTok{return}\NormalTok{(ll)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}\FunctionTok{return}\NormalTok{(}\FloatTok{1e+09}\NormalTok{)\}\}}
+
+\NormalTok{garch\_gmle }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+  \CommentTok{\#\textquotesingle{} Optimisation for GMLE.}
+  \CommentTok{\#\textquotesingle{} @param x vector. An array to be estimated}
+\NormalTok{  params }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{) }\CommentTok{\# initial parameters for optimisation}
+\NormalTok{  result }\OtherTok{=} \FunctionTok{optim}\NormalTok{(params, gmle, }\AttributeTok{x=}\NormalTok{x, }\AttributeTok{method =} \FunctionTok{c}\NormalTok{(}\StringTok{"BFGS"}\NormalTok{)) }\CommentTok{\# BFGS Algorithm for minimisation}
+\NormalTok{  res }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{par)}
+  \FunctionTok{row.names}\NormalTok{(res) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"alpha0"}\NormalTok{,}\StringTok{"alpha1"}\NormalTok{,}\StringTok{"beta"}\NormalTok{)}
+\NormalTok{  res[}\StringTok{"{-}LL"}\NormalTok{, ] }\OtherTok{=}\NormalTok{ result}\SpecialCharTok{$}\NormalTok{value}
+  \FunctionTok{return}\NormalTok{(res)\}}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{garch\_gmle}\NormalTok{(x), }\AttributeTok{caption=}\StringTok{"GARCH MLE"}\NormalTok{)}
+\NormalTok{lade\_mle }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x, params) \{}
+  \CommentTok{\#\textquotesingle{} LADE function in the paper. }
+  \CommentTok{\#\textquotesingle{} @param x vector. An array to be estimated}
+  \CommentTok{\#\textquotesingle{} @param params vector. The sequence of parameters, a0, a1, b1, c0 respectively}
+\NormalTok{  a0 }\OtherTok{=}\NormalTok{ params[}\DecValTok{1}\NormalTok{] }\CommentTok{\# c in the paper}
+\NormalTok{  a1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{2}\NormalTok{] }\CommentTok{\# b1 in the paper}
+\NormalTok{  b1 }\OtherTok{=}\NormalTok{ params[}\DecValTok{3}\NormalTok{] }\CommentTok{\# a1 in the paper}
+\NormalTok{  c0 }\OtherTok{=}\NormalTok{ params[}\DecValTok{4}\NormalTok{] }\CommentTok{\# C0 in the paper}
+\NormalTok{  gamma }\OtherTok{=}\NormalTok{ a0 }\SpecialCharTok{/}\NormalTok{ c0}
+\NormalTok{  beta }\OtherTok{=}\NormalTok{ a1 }\SpecialCharTok{/}\NormalTok{ c0}
+\NormalTok{  n }\OtherTok{=} \FunctionTok{length}\NormalTok{(x)}
+\NormalTok{  s2 }\OtherTok{=} \FunctionTok{c}\NormalTok{(gamma}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{b1) }\SpecialCharTok{+}\NormalTok{ beta }\SpecialCharTok{*}\NormalTok{ x[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\CommentTok{\# Equation (2.6)}
+\NormalTok{  s2 }\OtherTok{=} \FunctionTok{c}\NormalTok{(s2, gamma }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ b1) }\SpecialCharTok{+}\NormalTok{ beta }\SpecialCharTok{*}\NormalTok{ x[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{(n}\DecValTok{{-}1}\NormalTok{)]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ beta }\SpecialCharTok{*} \FunctionTok{cumsum}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{b1}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{(n}\SpecialCharTok{:}\DecValTok{1}\NormalTok{))[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(n}\DecValTok{{-}2}\NormalTok{)])}
+\NormalTok{  ll }\OtherTok{=} \FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{log}\NormalTok{(x[}\DecValTok{2}\SpecialCharTok{:}\NormalTok{n]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(s2)))}
+  \ControlFlowTok{if}\NormalTok{ (a0}\SpecialCharTok{\textgreater{}=}\DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ a1 }\SpecialCharTok{\textgreater{}=} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ b1 }\SpecialCharTok{\textgreater{}=} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ a1}\SpecialCharTok{+}\NormalTok{b1 }\SpecialCharTok{\textless{}} \DecValTok{1} \SpecialCharTok{\&\&}\NormalTok{ c0 }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{ }\CommentTok{\# Constraint for GARCH}
+    \FunctionTok{return}\NormalTok{(ll)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{return}\NormalTok{(}\FloatTok{1e+09}\NormalTok{)\}\}}
+
+\NormalTok{garch\_lade }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+  \CommentTok{\#\textquotesingle{} Optimisation for LADE.}
+  \CommentTok{\#\textquotesingle{} @param x vector. An array to be estimated}
+\NormalTok{  params }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{) }\CommentTok{\# initial parameters for optimisation}
+\NormalTok{  result }\OtherTok{=} \FunctionTok{optim}\NormalTok{(params, lade\_mle, }\AttributeTok{x=}\NormalTok{x, }\AttributeTok{gr=}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{method =} \FunctionTok{c}\NormalTok{(}\StringTok{"L{-}BFGS{-}B"}\NormalTok{))}
+\NormalTok{  res }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(result}\SpecialCharTok{$}\NormalTok{par)}
+  \FunctionTok{row.names}\NormalTok{(res) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"a0"}\NormalTok{,}\StringTok{"a1"}\NormalTok{,}\StringTok{"b1"}\NormalTok{, }\StringTok{"C0"}\NormalTok{)}
+\NormalTok{  res[}\StringTok{"{-}LL"}\NormalTok{, ] }\OtherTok{=}\NormalTok{ result}\SpecialCharTok{$}\NormalTok{value}
+  \FunctionTok{return}\NormalTok{(res)\}}
+
+\NormalTok{laplce\_rv }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{1}\NormalTok{) \{}
+  \CommentTok{\#\textquotesingle{} Laplace r.v. generator, source: Wikipedia}
+  \CommentTok{\#\textquotesingle{} @param n int. A number of samples}
+  \CommentTok{\#\textquotesingle{} @param mu float. Location parameter}
+  \CommentTok{\#\textquotesingle{} @param lam float. Scale parameter}
+\NormalTok{  p }\OtherTok{=} \FunctionTok{runif}\NormalTok{(n)}
+\NormalTok{  x1 }\OtherTok{=}\NormalTok{ b }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ p) }\SpecialCharTok{+}\NormalTok{ mu}
+\NormalTok{  x2 }\OtherTok{=} \SpecialCharTok{{-}}\NormalTok{b }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p)) }\SpecialCharTok{+}\NormalTok{ mu}
+\NormalTok{  x1[x1}\SpecialCharTok{\textgreater{}}\NormalTok{mu] }\OtherTok{=} \DecValTok{0}
+\NormalTok{  x2[x2}\SpecialCharTok{\textless{}=}\NormalTok{mu] }\OtherTok{=} \DecValTok{0}
+  \FunctionTok{return}\NormalTok{(x1 }\SpecialCharTok{+}\NormalTok{ x2)\}}
+\CommentTok{\# Simulate GARCH (1,1) Series with normal distribution}
+\NormalTok{lp\_x }\OtherTok{=} \FunctionTok{simulate\_garch}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{, }\FloatTok{0.7}\NormalTok{, }\FloatTok{0.2}\NormalTok{), }\DecValTok{100}\NormalTok{, }\FunctionTok{laplce\_rv}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{garch\_lade}\NormalTok{(lp\_x), }\AttributeTok{caption=}\StringTok{"GARCH LADE"}\NormalTok{)}
+\NormalTok{skewed\_t\_rv }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n, dof) \{}
+  \CommentTok{\#\textquotesingle{} Skewed t r.v. generator}
+  \CommentTok{\#\textquotesingle{} @param n int. A number of samples}
+  \CommentTok{\#\textquotesingle{} @param dof int. Degrees of freedom}
+\NormalTok{  v0 }\OtherTok{=} \FunctionTok{abs}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n))}
+\NormalTok{  v1 }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(n)}
+\NormalTok{  v2 }\OtherTok{=} \FunctionTok{rchisq}\NormalTok{(n, dof)}
+\NormalTok{  (}\FloatTok{0.8} \SpecialCharTok{*}\NormalTok{ v0 }\SpecialCharTok{+} \FloatTok{0.6} \SpecialCharTok{*}\NormalTok{ v1) }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(v2 }\SpecialCharTok{/}\NormalTok{ dof)}
+\NormalTok{\}}
+\NormalTok{n }\OtherTok{=} \DecValTok{1000}
+\NormalTok{cases }\OtherTok{=} \FunctionTok{list}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(n), }\FunctionTok{rt}\NormalTok{(n, }\DecValTok{3}\NormalTok{), }\FunctionTok{skewed\_t\_rv}\NormalTok{(n, }\DecValTok{6}\NormalTok{), }\FunctionTok{skewed\_t\_rv}\NormalTok{(n, }\DecValTok{3}\NormalTok{), }\FunctionTok{laplce\_rv}\NormalTok{(n, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{1}\NormalTok{), }\FunctionTok{exp}\NormalTok{(}\FunctionTok{laplce\_rv}\NormalTok{(n, }\AttributeTok{mu=}\DecValTok{0}\NormalTok{, }\AttributeTok{b=}\DecValTok{1}\NormalTok{))) }\CommentTok{\# Distribution List (Total 6 cases)}
+\FunctionTok{names}\NormalTok{(cases) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"N(0,1)"}\NormalTok{, }\StringTok{"t with DoF=3"}\NormalTok{, }\StringTok{"Skewed t with DoF=6"}\NormalTok{, }\StringTok{"Skewed t with DoF=3"}\NormalTok{, }\StringTok{"Laplace with mu=0 and b=1"}\NormalTok{, }\StringTok{"Laplace with log"}\NormalTok{) }\CommentTok{\# Distribution Name}
+\NormalTok{ee\_func }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(param\_hat, param\_r) \{}
+  \CommentTok{\#\textquotesingle{} Estimation error function.}
+  \CommentTok{\#\textquotesingle{} @param param\_hat vector. A vector of estimated parameters}
+  \CommentTok{\#\textquotesingle{} @param param\_r vector. A vector of true parameters}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{abs}\NormalTok{(param\_hat[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{/}\NormalTok{param\_hat[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{param\_r[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{/}\NormalTok{param\_r[}\DecValTok{1}\NormalTok{]) }\SpecialCharTok{+} \FunctionTok{abs}\NormalTok{(param\_hat[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{param\_r[}\DecValTok{3}\NormalTok{]))\}}
+\NormalTok{params }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{, }\FloatTok{0.3}\NormalTok{)}
+\NormalTok{res }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow=}\FunctionTok{length}\NormalTok{(cases), }\AttributeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (case\_n }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(cases))\{}
+\NormalTok{  d }\OtherTok{=}\NormalTok{ cases[[case\_n]] }\CommentTok{\# Each case distribution}
+\NormalTok{  e\_gmle }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
+\NormalTok{  e\_lade }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{    x }\OtherTok{=} \FunctionTok{simulate\_garch}\NormalTok{(params, n, d)}
+\NormalTok{    gmle\_res }\OtherTok{=} \FunctionTok{garch\_gmle}\NormalTok{(x)}
+\NormalTok{    lade\_res }\OtherTok{=} \FunctionTok{garch\_lade}\NormalTok{(x)}
+\NormalTok{    eps\_gmle }\OtherTok{=} \FunctionTok{ee\_func}\NormalTok{(}\FunctionTok{as.vector}\NormalTok{(gmle\_res[,}\DecValTok{1}\NormalTok{]), params)}
+\NormalTok{    eps\_lade }\OtherTok{=} \FunctionTok{ee\_func}\NormalTok{(}\FunctionTok{as.vector}\NormalTok{(lade\_res[,}\DecValTok{1}\NormalTok{]), params)}
+\NormalTok{    e\_gmle }\OtherTok{=} \FunctionTok{c}\NormalTok{(e\_gmle, eps\_gmle)}
+\NormalTok{    e\_lade }\OtherTok{=} \FunctionTok{c}\NormalTok{(e\_lade, eps\_lade)}
+\NormalTok{  \}}
+\NormalTok{  res[case\_n, ] }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{mean}\NormalTok{(e\_gmle), }\FunctionTok{mean}\NormalTok{(e\_lade))}
+\NormalTok{\}}
+\NormalTok{res }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(res)}
+\FunctionTok{row.names}\NormalTok{(res) }\OtherTok{=} \FunctionTok{names}\NormalTok{(cases)}
+\FunctionTok{colnames}\NormalTok{(res) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Epsilon\_GMLE"}\NormalTok{, }\StringTok{"Epsilon\_LADE"}\NormalTok{)}
+\FunctionTok{kable}\NormalTok{(res, }\AttributeTok{caption=}\StringTok{"Estimation Error by Distribution"}\NormalTok{)}
+\NormalTok{btc }\OtherTok{=} \FunctionTok{na.omit}\NormalTok{(}\FunctionTok{getSymbols}\NormalTok{(}\StringTok{"BTC{-}USD"}\NormalTok{, }\AttributeTok{src =} \StringTok{\textquotesingle{}yahoo\textquotesingle{}}\NormalTok{, }\AttributeTok{from =} \StringTok{"2014{-}09{-}17"}\NormalTok{, }\AttributeTok{to =} \StringTok{"2021{-}06{-}02"}\NormalTok{, }\AttributeTok{auto.assign =} \ConstantTok{FALSE}\NormalTok{))}
+\NormalTok{price }\OtherTok{=} \FunctionTok{window}\NormalTok{(btc, }\AttributeTok{start =} \StringTok{"2017{-}01{-}01"}\NormalTok{)[,}\DecValTok{6}\NormalTok{]}
+\NormalTok{logprice }\OtherTok{=} \FunctionTok{log}\NormalTok{(price)}
+\NormalTok{btc.ts.log }\OtherTok{=} \FunctionTok{log}\NormalTok{(}\FunctionTok{ts}\NormalTok{(price, }\AttributeTok{start=}\FunctionTok{c}\NormalTok{(}\DecValTok{2014}\NormalTok{,}\DecValTok{09}\NormalTok{,}\DecValTok{17}\NormalTok{), }\AttributeTok{frequency=}\DecValTok{252}\NormalTok{))}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(price, }\AttributeTok{main=}\StringTok{"Price"}\NormalTok{) }
+\FunctionTok{plot}\NormalTok{(logprice, }\AttributeTok{main=}\StringTok{"Log Price"}\NormalTok{)}
+\NormalTok{summary\_stat }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(df)\{}
+\NormalTok{  metrics }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Mean"}\NormalTok{,}\StringTok{"Median"}\NormalTok{,}\StringTok{"SD"}\NormalTok{, }\StringTok{"Min"}\NormalTok{, }\StringTok{"Max"}\NormalTok{,}\StringTok{"Skew"}\NormalTok{, }\StringTok{"Kurt"}\NormalTok{, }\StringTok{"\#Obs"}\NormalTok{)}
+\NormalTok{  met\_func }\OtherTok{=} \FunctionTok{c}\NormalTok{(mean, median, sd, min, max, skewness, kurtosis, length)}
+\NormalTok{  tab }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow=} \FunctionTok{length}\NormalTok{(metrics), }
+               \AttributeTok{ncol=}\FunctionTok{dim}\NormalTok{(df)[}\DecValTok{2}\NormalTok{], }
+               \AttributeTok{dimnames =} \FunctionTok{list}\NormalTok{(metrics,}\FunctionTok{colnames}\NormalTok{(df)))}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(metrics))\{}
+\NormalTok{    tab[i,] }\OtherTok{=} \FunctionTok{apply}\NormalTok{(df, }\DecValTok{2}\NormalTok{, met\_func[[i]])\}}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{signif}\NormalTok{(tab, }\DecValTok{3}\NormalTok{))\}}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{summary\_stat}\NormalTok{(price), }\AttributeTok{caption=}\StringTok{"Summary Statistics: BTC Price"}\NormalTok{)}
+\NormalTok{decomp\_analysis }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(ts\_v) \{}
+  \CommentTok{\#\textquotesingle{} Decomposition plot (Assess trend, seasonality and remainder)}
+\NormalTok{  ts\_v }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{decompose}\NormalTok{(}\AttributeTok{type=}\StringTok{"additive"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{autoplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Year"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Classical additive decomposition of log return"}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{stationarity\_analysis }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(ts\_v)\{}
+  \CommentTok{\#\textquotesingle{} Stationarity Test: ADF Test / KPSS}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{summary}\NormalTok{(}\FunctionTok{ur.kpss}\NormalTok{(ts\_v)))}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{adf.test}\NormalTok{(ts\_v, }\AttributeTok{k=}\DecValTok{12}\NormalTok{))}
+\NormalTok{\}}
+\FunctionTok{decomp\_analysis}\NormalTok{(btc.ts.log) }\CommentTok{\# Decomposition analysis for model identification}
+\FunctionTok{stationarity\_analysis}\NormalTok{(btc.ts.log)}
+\NormalTok{logret }\OtherTok{=} \FunctionTok{diff}\NormalTok{(logprice) }\CommentTok{\# Log Return}
+\NormalTok{logret }\OtherTok{=}\NormalTok{ logret[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(logret)] }\CommentTok{\# Omit NA Values}
+\NormalTok{logret.ts }\OtherTok{=} \FunctionTok{ts}\NormalTok{(logret, }\AttributeTok{frequency =} \DecValTok{252}\NormalTok{) }\CommentTok{\# TS Object}
+\FunctionTok{decomp\_analysis}\NormalTok{(logret.ts) }\CommentTok{\# Decomposition Analysis}
+\FunctionTok{stationarity\_analysis}\NormalTok{(logret.ts) }\CommentTok{\# Stationarity test}
+\FunctionTok{Box.test}\NormalTok{(logret, }\AttributeTok{type=}\StringTok{"Ljung{-}Box"}\NormalTok{)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{acf}\NormalTok{(logret)}
+\FunctionTok{pacf}\NormalTok{(logret)}
+\NormalTok{grid\_search\_sarima }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(ts\_v, pqd\_terms) \{}
+  \CommentTok{\#\textquotesingle{} Exhaustive approach of derive multiplicative seasonal ARIMA model.}
+  \CommentTok{\#\textquotesingle{} Iterate through each P, Q terms of non{-}seasonal components. (D is fixed.)}
+  \CommentTok{\#\textquotesingle{} @param ts\_v (vector): A Time Series vector.}
+  \CommentTok{\#\textquotesingle{} @param pqd\_terms (vector): Initial P, Q, D elements for non{-}seasonal component.}
+\NormalTok{  c\_pqd }\OtherTok{=} \FunctionTok{expand.grid}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\FunctionTok{max}\NormalTok{(pqd\_terms[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), pqd\_terms[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{+} \DecValTok{1}\NormalTok{), pqd\_terms[}\DecValTok{2}\NormalTok{],}
+                              \FunctionTok{seq}\NormalTok{(}\FunctionTok{max}\NormalTok{(pqd\_terms[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), pqd\_terms[}\DecValTok{3}\NormalTok{] }\SpecialCharTok{+} \DecValTok{1}\NormalTok{))}
+\NormalTok{  mod\_fit }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{AIC =} \FunctionTok{numeric}\NormalTok{(}\DecValTok{0}\NormalTok{),}\AttributeTok{BIC =} \FunctionTok{numeric}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{Specification =} \FunctionTok{numeric}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+\NormalTok{  count }\OtherTok{=} \DecValTok{1}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(c\_pqd)[}\DecValTok{1}\NormalTok{])\{}
+\NormalTok{    skip\_to\_next }\OtherTok{\textless{}{-}} \ConstantTok{FALSE}
+    \CommentTok{\# Error catcher for ARIMA fitting (In case of optimisation error)}
+\NormalTok{    mod }\OtherTok{=} \FunctionTok{tryCatch}\NormalTok{(}\FunctionTok{Arima}\NormalTok{(ts\_v, }\AttributeTok{order =} \FunctionTok{as.numeric}\NormalTok{(c\_pqd[i,])), }
+                   \AttributeTok{error =} \ControlFlowTok{function}\NormalTok{(e) \{ skip\_to\_next }\OtherTok{\textless{}\textless{}{-}} \ConstantTok{TRUE}\NormalTok{\})}
+    \ControlFlowTok{if}\NormalTok{(skip\_to\_next) \{}\ControlFlowTok{next}\NormalTok{\}}
+\NormalTok{    mod\_fit[count, ] }\OtherTok{=} \FunctionTok{c}\NormalTok{(mod}\SpecialCharTok{$}\NormalTok{aic, mod}\SpecialCharTok{$}\NormalTok{bic, }\FunctionTok{paste}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(c\_pqd[i,]), }\AttributeTok{collapse=}\StringTok{","}\NormalTok{))}
+\NormalTok{    count }\OtherTok{=}\NormalTok{ count }\SpecialCharTok{+} \DecValTok{1}\NormalTok{\}}
+\NormalTok{  mod\_fit }\OtherTok{=}\NormalTok{ mod\_fit }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{arrange}\NormalTok{(AIC)}
+  \FunctionTok{return}\NormalTok{(mod\_fit)\}}
+\FunctionTok{grid\_search\_sarima}\NormalTok{(logprice, }\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{best\_arma }\OtherTok{=} \FunctionTok{Arima}\NormalTok{(logprice, }\AttributeTok{order=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{best\_arma.fitted }\OtherTok{=} \FunctionTok{xts}\NormalTok{(}\FunctionTok{fitted}\NormalTok{(best\_arma), }\FunctionTok{index}\NormalTok{(logprice))}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{ts}\NormalTok{(logprice), }\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{lwd=}\FloatTok{1.5}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{main=}\StringTok{"Fitted (Red) vs Actual (Blue)"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{ts}\NormalTok{(best\_arma.fitted), }\AttributeTok{lwd=}\FloatTok{1.5}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{)}
+\FunctionTok{checkresiduals}\NormalTok{(best\_arma) }\CommentTok{\# Residual analysis}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\FunctionTok{Auto.VR}\NormalTok{(logret)), }\AttributeTok{caption =} \StringTok{"Variance Ratio Test"}\NormalTok{)}
+\FunctionTok{archTest}\NormalTok{(}\FunctionTok{ts}\NormalTok{(logret), }\DecValTok{1}\NormalTok{)}
+\NormalTok{garch\_modeler }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(model, garchorder, armaorder, dist)\{}
+  \CommentTok{\#\textquotesingle{} @param garchorder: GARCH(p,q) order}
+  \CommentTok{\#\textquotesingle{} @param armaorder: GARCH{-}in{-}Mean model order}
+  \CommentTok{\#\textquotesingle{} @param dist: Innovation distribution}
+\NormalTok{  spec }\OtherTok{=} \FunctionTok{ugarchspec}\NormalTok{(}\AttributeTok{mean.model =} \FunctionTok{list}\NormalTok{(}\AttributeTok{armaOrder =}\NormalTok{ armaorder),}
+                    \AttributeTok{variance.model =} \FunctionTok{list}\NormalTok{(}\AttributeTok{model=}\NormalTok{model, }\AttributeTok{garchOrder =}\NormalTok{ garchorder), }
+                    \AttributeTok{distribution.model =}\NormalTok{ dist) }
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{ugarchfit}\NormalTok{(}\AttributeTok{data=}\NormalTok{logret, }\AttributeTok{spec=}\NormalTok{spec))\}}
+\NormalTok{arch\_orders }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"ARCH(2)"}\NormalTok{, }\StringTok{"ARCH(3)"}\NormalTok{, }\StringTok{"ARCH(4)"}\NormalTok{)}
+\NormalTok{arch.res }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow =} \FunctionTok{length}\NormalTok{(arch\_orders), }\AttributeTok{ncol=}\DecValTok{4}\NormalTok{, }
+                  \AttributeTok{dimnames=}\FunctionTok{list}\NormalTok{(arch\_orders,  }\FunctionTok{c}\NormalTok{(}\StringTok{"AIC"}\NormalTok{,}\StringTok{"BIC"}\NormalTok{,}\StringTok{"SIC"}\NormalTok{,}\StringTok{"HQIC"}\NormalTok{)))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(arch\_orders))\{}
+\NormalTok{  model.arch }\OtherTok{=} \FunctionTok{garch\_modeler}\NormalTok{(}\StringTok{"sGARCH"}\NormalTok{, }\FunctionTok{c}\NormalTok{((i}\SpecialCharTok{+}\DecValTok{1}\NormalTok{),}\DecValTok{0}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\AttributeTok{dist=}\StringTok{"norm"}\NormalTok{)}
+\NormalTok{  arch.res[i,] }\OtherTok{=} \FunctionTok{as.vector}\NormalTok{(}\FunctionTok{infocriteria}\NormalTok{(model.arch))\}}
+\NormalTok{arch.res }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(arch.res)}
+\FunctionTok{kable}\NormalTok{(arch.res, }\AttributeTok{caption=}\StringTok{"ARCH(p) Model Metrics"}\NormalTok{)}
+\NormalTok{plot\_conditional\_vol }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(model, main)\{}
+\NormalTok{  plotvol }\OtherTok{=} \FunctionTok{plot}\NormalTok{(}\FunctionTok{abs}\NormalTok{(logret), }\AttributeTok{col =} \StringTok{"gray"}\NormalTok{, }\AttributeTok{main=}\NormalTok{main)}
+\NormalTok{  plotvol }\OtherTok{=} \FunctionTok{addSeries}\NormalTok{(}\FunctionTok{sigma}\NormalTok{(model), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{on =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  plotvol }\OtherTok{=} \FunctionTok{addSeries}\NormalTok{(}\FunctionTok{sigma}\NormalTok{(model), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{on =} \DecValTok{1}\NormalTok{)}
+  \FunctionTok{return}\NormalTok{(plotvol) \}}
+\FunctionTok{plot\_conditional\_vol}\NormalTok{(model.arch, }\StringTok{"ARCH with Normal Dist"}\NormalTok{)}
+\NormalTok{sgarch }\OtherTok{=}  \FunctionTok{garch\_modeler}\NormalTok{(}\StringTok{"sGARCH"}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\StringTok{"norm"}\NormalTok{) }\CommentTok{\# Standard GARCH}
+\NormalTok{metrics }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol=}\DecValTok{4}\NormalTok{,}\AttributeTok{nrow=}\DecValTok{0}\NormalTok{, }\AttributeTok{dimnames=}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(), }\FunctionTok{c}\NormalTok{(}\StringTok{"AIC"}\NormalTok{,}\StringTok{"BIC"}\NormalTok{,}\StringTok{"SIC"}\NormalTok{,}\StringTok{"HQIC"}\NormalTok{))))}
+\NormalTok{metrics[}\StringTok{"(Normal) GARCH(1,1)"}\NormalTok{, ] }\OtherTok{=}  \FunctionTok{infocriteria}\NormalTok{(sgarch)}
+\FunctionTok{plot\_conditional\_vol}\NormalTok{(sgarch, }\StringTok{"sGARCH with Normal Dist"}\NormalTok{)}
+\NormalTok{stdgarch }\OtherTok{=}  \FunctionTok{garch\_modeler}\NormalTok{(}\StringTok{"sGARCH"}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\StringTok{"sstd"}\NormalTok{) }\CommentTok{\# T{-}distribution GARCH}
+\NormalTok{metrics[}\StringTok{"(SSTD) GARCH(1,1)"}\NormalTok{, ] }\OtherTok{=}  \FunctionTok{infocriteria}\NormalTok{(stdgarch)}
+\FunctionTok{plot\_conditional\_vol}\NormalTok{(stdgarch, }\StringTok{"sGARCH with SSTD"}\NormalTok{)}
+\NormalTok{egarch }\OtherTok{=}  \FunctionTok{garch\_modeler}\NormalTok{(}\StringTok{"eGARCH"}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\StringTok{"sstd"}\NormalTok{) }\CommentTok{\# EGARCH}
+\NormalTok{metrics[}\StringTok{"EGARCH"}\NormalTok{, ] }\OtherTok{=}  \FunctionTok{infocriteria}\NormalTok{(egarch)}
+\NormalTok{gjrgarch }\OtherTok{=}  \FunctionTok{garch\_modeler}\NormalTok{(}\StringTok{"gjrGARCH"}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\StringTok{"sstd"}\NormalTok{) }\CommentTok{\# GJR{-}GARCH}
+\NormalTok{metrics[}\StringTok{"GJR{-}GARCH"}\NormalTok{, ] }\OtherTok{=}  \FunctionTok{infocriteria}\NormalTok{(gjrgarch)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot\_conditional\_vol}\NormalTok{(egarch, }\StringTok{"EGARCH"}\NormalTok{)}
+\FunctionTok{plot\_conditional\_vol}\NormalTok{(gjrgarch, }\StringTok{"GJR{-}GARCH"}\NormalTok{)}
+\NormalTok{gjrgarchm }\OtherTok{=}  \FunctionTok{garch\_modeler}\NormalTok{(}\StringTok{"gjrGARCH"}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{), }\StringTok{"sstd"}\NormalTok{) }\CommentTok{\# GJR{-}GARCH IN MEAN}
+\NormalTok{metrics[}\StringTok{"GJR{-}GARCH{-}M"}\NormalTok{, ] }\OtherTok{=}  \FunctionTok{infocriteria}\NormalTok{(gjrgarchm)}
+\FunctionTok{kable}\NormalTok{(metrics, }\AttributeTok{caption=}\StringTok{"Model Performance Metrics"}\NormalTok{)}
+\FunctionTok{plot\_conditional\_vol}\NormalTok{(gjrgarchm, }\StringTok{"GJR{-}GARCH{-}M"}\NormalTok{)}
+\NormalTok{model\_list }\OtherTok{=} \FunctionTok{c}\NormalTok{(gjrgarchm, gjrgarch, egarch)}
+\FunctionTok{names}\NormalTok{(model\_list) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"GJR{-}GARCH{-}M"}\NormalTok{, }\StringTok{"GJR{-}GARCH"}\NormalTok{, }\StringTok{"EGARCH"}\NormalTok{)}
+\NormalTok{c }\OtherTok{=} \DecValTok{1}
+\NormalTok{mod\_df }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\StringTok{"Abs Ret"} \OtherTok{=} \FunctionTok{abs}\NormalTok{(logret))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)) \{}
+\NormalTok{    sig }\OtherTok{=} \FunctionTok{sigma}\NormalTok{(model\_list[[i]])}
+    \FunctionTok{colnames}\NormalTok{(sig) }\OtherTok{=} \FunctionTok{names}\NormalTok{(model\_list)[[i]]}
+    \ControlFlowTok{if}\NormalTok{ (c}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) \{}
+\NormalTok{      msigma }\OtherTok{=}\NormalTok{ sig\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{        msigma }\OtherTok{=} \FunctionTok{merge}\NormalTok{(msigma, sig)\} }
+\NormalTok{  c }\OtherTok{=}\NormalTok{ c }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{  mod\_df[, }\FunctionTok{names}\NormalTok{(model\_list)[[i]]] }\OtherTok{=}\NormalTok{ sig\}}
+\FunctionTok{matplot}\NormalTok{(mod\_df, }\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"grey"}\NormalTok{, }\StringTok{"red"}\NormalTok{,}\StringTok{"blue"}\NormalTok{, }\StringTok{"green"}\NormalTok{), }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{3}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\FunctionTok{colnames}\NormalTok{(mod\_df),}\AttributeTok{col=}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(mod\_df)),}\AttributeTok{cex=}\FloatTok{0.8}\NormalTok{,}\AttributeTok{fill=}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(mod\_df)))}
+\NormalTok{train }\OtherTok{=}\NormalTok{ logret[}\StringTok{"/2020{-}12"}\NormalTok{] }\CommentTok{\# Train \& Test split}
+\NormalTok{test }\OtherTok{=}\NormalTok{ logret[}\StringTok{"2021{-}1/"}\NormalTok{]}
+\NormalTok{best\_m }\OtherTok{=} \FunctionTok{ugarchspec}\NormalTok{(}\AttributeTok{mean.model =} \FunctionTok{list}\NormalTok{(}\AttributeTok{armaOrder =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)), }\CommentTok{\# BEST MODEL}
+                        \AttributeTok{variance.model =} \FunctionTok{list}\NormalTok{(}\AttributeTok{model =} \StringTok{"gjrGARCH"}\NormalTok{),}
+                        \AttributeTok{distribution.model =} \StringTok{"sstd"}\NormalTok{)}
+\NormalTok{garchfit }\OtherTok{=} \FunctionTok{ugarchfit}\NormalTok{(}\AttributeTok{data =}\NormalTok{ train, }\AttributeTok{spec =}\NormalTok{ best\_m)}
+\NormalTok{simgarchspec }\OtherTok{=}\NormalTok{ best\_m}
+\FunctionTok{setfixed}\NormalTok{(simgarchspec) }\OtherTok{=} \FunctionTok{as.list}\NormalTok{(}\FunctionTok{coef}\NormalTok{(garchfit)) }\CommentTok{\# Simulation setting}
+\NormalTok{simgarch }\OtherTok{=} \FunctionTok{ugarchpath}\NormalTok{(}\AttributeTok{spec =}\NormalTok{ simgarchspec, }\AttributeTok{m.sim =} \DecValTok{5}\NormalTok{, }\AttributeTok{n.sim =} \FunctionTok{length}\NormalTok{(test), }\AttributeTok{rseed =}\DecValTok{349}\NormalTok{)}
+\NormalTok{simret }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{fitted}\NormalTok{(simgarch)) }\CommentTok{\# Simulated returns}
+\NormalTok{simret}\SpecialCharTok{$}\NormalTok{Actual }\OtherTok{=}\NormalTok{ test }\CommentTok{\# Actual returns}
+\NormalTok{cumul\_prices }\OtherTok{=} \FunctionTok{exp}\NormalTok{(}\FunctionTok{apply}\NormalTok{(simret, }\DecValTok{2}\NormalTok{, }\StringTok{"cumsum"}\NormalTok{)) }\CommentTok{\# Cumulative return of normal price}
+\FunctionTok{matplot}\NormalTok{(cumul\_prices, }\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Price"}\NormalTok{) }\CommentTok{\# Visualisation}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\FunctionTok{colnames}\NormalTok{(cumul\_prices),}\AttributeTok{col=}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(cumul\_prices)),}\AttributeTok{cex=}\FloatTok{0.8}\NormalTok{,}\AttributeTok{fill=}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(cumul\_prices)))}
+\NormalTok{model.garch.fit }\OtherTok{=} \FunctionTok{ugarchfit}\NormalTok{(}\AttributeTok{data=}\FunctionTok{c}\NormalTok{(train,test), }\AttributeTok{spec=}\NormalTok{best\_m, }\AttributeTok{out.sample =} \FunctionTok{length}\NormalTok{(test),  }\AttributeTok{solver =} \StringTok{\textquotesingle{}hybrid\textquotesingle{}}\NormalTok{)}
+\NormalTok{modelfor }\OtherTok{=} \FunctionTok{ugarchforecast}\NormalTok{(model.garch.fit, }\AttributeTok{data=}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{n.ahead=}\DecValTok{1}\NormalTok{, }\AttributeTok{n.roll=}\FunctionTok{length}\NormalTok{(test), }\AttributeTok{out.sample =} \FunctionTok{length}\NormalTok{(test))}
+\NormalTok{results1 }\OtherTok{=}\NormalTok{ modelfor}\SpecialCharTok{@}\NormalTok{forecast}\SpecialCharTok{$}\NormalTok{seriesFor[}\DecValTok{1}\NormalTok{,] }\SpecialCharTok{+}\NormalTok{ modelfor}\SpecialCharTok{@}\NormalTok{forecast}\SpecialCharTok{$}\NormalTok{sigmaFor[}\DecValTok{1}\NormalTok{,]}
+\NormalTok{results2 }\OtherTok{=}\NormalTok{ modelfor}\SpecialCharTok{@}\NormalTok{forecast}\SpecialCharTok{$}\NormalTok{seriesFor[}\DecValTok{1}\NormalTok{,] }\SpecialCharTok{{-}}\NormalTok{ modelfor}\SpecialCharTok{@}\NormalTok{forecast}\SpecialCharTok{$}\NormalTok{sigmaFor[}\DecValTok{1}\NormalTok{,]}
+\NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(test), }\FunctionTok{max}\NormalTok{(test))}
+\FunctionTok{plot.ts}\NormalTok{(test , }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{ylim=}\NormalTok{ylim, }\AttributeTok{ylab=}\StringTok{"value"}\NormalTok{)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{new=}\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{modelfor}\SpecialCharTok{@}\NormalTok{forecast}\SpecialCharTok{$}\NormalTok{seriesFor[}\DecValTok{1}\NormalTok{,]  }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{plot.ts}\NormalTok{(}\AttributeTok{ylim=}\NormalTok{ylim)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{new=}\ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{plot.ts}\NormalTok{(results1, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{ylim=}\NormalTok{ylim, }\AttributeTok{ylab=}\StringTok{"value"}\NormalTok{)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{new=}\ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{plot.ts}\NormalTok{(results2, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{ylim=}\NormalTok{ylim, }\AttributeTok{ylab=}\StringTok{"value"}\NormalTok{)}
+\NormalTok{read\_csv }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(path)\{}
+\NormalTok{  df }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(path)}
+\NormalTok{  df[}\FunctionTok{is.na}\NormalTok{(df)] }\OtherTok{=} \DecValTok{0}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{xts}\NormalTok{(df[, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{], }\AttributeTok{order.by =} \FunctionTok{as.Date}\NormalTok{(df[,}\DecValTok{1}\NormalTok{])))\}}
+\NormalTok{cov\_case\_xts }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"/Users/joonkang/Library/Mobile Documents/com\textasciitilde{}apple\textasciitilde{}CloudDocs/Group/Study/PG/ST436 Financialy Analysis/Assignment/COVID\_CASE.csv"}\NormalTok{)}
+\NormalTok{cov\_death\_xts }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"/Users/joonkang/Library/Mobile Documents/com\textasciitilde{}apple\textasciitilde{}CloudDocs/Group/Study/PG/ST436 Financialy Analysis/Assignment/COVID\_DEATH.csv"}\NormalTok{)}
+\NormalTok{stock\_list }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"\^{}GSPC"}\NormalTok{, }\StringTok{"\^{}FTSE"}\NormalTok{, }\StringTok{"\^{}DJI"}\NormalTok{, }\StringTok{"\^{}N225"}\NormalTok{, }\StringTok{"\^{}GDAXI"}\NormalTok{, }\StringTok{"000001.SS"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(stock\_list))\{}
+\NormalTok{    dat }\OtherTok{=} \FunctionTok{getSymbols}\NormalTok{(stock\_list[i], }\AttributeTok{src =} \StringTok{\textquotesingle{}yahoo\textquotesingle{}}\NormalTok{, }\AttributeTok{from =} \StringTok{"2019{-}01{-}24"}\NormalTok{, }\AttributeTok{to =} \StringTok{"2021{-}06{-}01"}\NormalTok{, }\AttributeTok{auto.assign=}\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{    dat }\OtherTok{=} \FunctionTok{na.omit}\NormalTok{(dat)[, }\DecValTok{6}\NormalTok{]}
+    \ControlFlowTok{if}\NormalTok{ (i}\SpecialCharTok{==}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{      prices }\OtherTok{=}\NormalTok{ dat}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{      prices }\OtherTok{=} \FunctionTok{merge}\NormalTok{(prices, dat, }\AttributeTok{by=}\DecValTok{0}\NormalTok{, }\AttributeTok{all=}\ConstantTok{TRUE}\NormalTok{)\}}
+\NormalTok{    prices }\OtherTok{=}\NormalTok{ prices[ ,}\SpecialCharTok{!}\NormalTok{(}\FunctionTok{names}\NormalTok{(prices) }\SpecialCharTok{\%like\%} \StringTok{"by"}\NormalTok{)]}
+\NormalTok{    prices }\OtherTok{=} \FunctionTok{na.omit}\NormalTok{(prices)\}}
+\NormalTok{prices.pre }\OtherTok{=}\NormalTok{ prices[}\StringTok{"/2020{-}01{-}22"}\NormalTok{]}
+\NormalTok{prices.post }\OtherTok{=}\NormalTok{ prices[}\StringTok{"2020{-}01{-}23/"}\NormalTok{]}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{summary\_stat}\NormalTok{(cov\_case\_xts), }\AttributeTok{caption=}\StringTok{"Summary Statistics: Confirmed Cases"}\NormalTok{)}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{summary\_stat}\NormalTok{(cov\_death\_xts), }\AttributeTok{caption=}\StringTok{"Summary Statistics: Confirmed Deaths"}\NormalTok{)}
+\NormalTok{ret.pre }\OtherTok{=} \FunctionTok{diff}\NormalTok{(prices.pre)}\SpecialCharTok{/}\NormalTok{prices.pre[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{summary\_stat}\NormalTok{(ret.pre), }\AttributeTok{caption=}\StringTok{"Summary Statistics: Pre COVID{-}19"}\NormalTok{)}
+\NormalTok{sd.pre }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol=}\DecValTok{1}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{6}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(ret.pre)[}\DecValTok{2}\NormalTok{])\{}
+\NormalTok{  stdv }\OtherTok{=} \FunctionTok{round}\NormalTok{(}\FunctionTok{sd}\NormalTok{(ret.pre[, i]), }\DecValTok{5}\NormalTok{)}
+\NormalTok{    sd.pre[i,] }\OtherTok{=}\NormalTok{ stdv\}}
+\FunctionTok{row.names}\NormalTok{(sd.pre) }\OtherTok{=} \FunctionTok{colnames}\NormalTok{(ret.pre)}
+\FunctionTok{colnames}\NormalTok{(sd.pre) }\OtherTok{=} \StringTok{"(Pre) SD"}
+\NormalTok{ret.post }\OtherTok{=} \FunctionTok{diff}\NormalTok{(prices.post)}\SpecialCharTok{/}\NormalTok{prices.post[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{summary\_stat}\NormalTok{(ret.post), }\AttributeTok{caption=}\StringTok{"Summary Statistics: Post COVID{-}19"}\NormalTok{)}
+\NormalTok{sd.post }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol=}\DecValTok{1}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{6}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(ret.post)[}\DecValTok{2}\NormalTok{])\{}
+\NormalTok{  stdv }\OtherTok{=} \FunctionTok{round}\NormalTok{(}\FunctionTok{sd}\NormalTok{(ret.post[, i]), }\DecValTok{5}\NormalTok{)}
+\NormalTok{  sd.post[i,] }\OtherTok{=}\NormalTok{ stdv\}}
+\FunctionTok{row.names}\NormalTok{(sd.post) }\OtherTok{=} \FunctionTok{colnames}\NormalTok{(ret.post)}
+\FunctionTok{colnames}\NormalTok{(sd.post) }\OtherTok{=} \StringTok{"(Post) SD"}
+\NormalTok{diff }\OtherTok{=}\NormalTok{ sd.post}\SpecialCharTok{/}\NormalTok{sd.pre}
+\FunctionTok{colnames}\NormalTok{(diff) }\OtherTok{=} \StringTok{"Post / Pre"}
+\NormalTok{sd.summary }\OtherTok{=} \FunctionTok{signif}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(sd.post, sd.pre, diff), }\DecValTok{3}\NormalTok{)}
+\FunctionTok{kable}\NormalTok{(sd.summary, }\AttributeTok{caption=}\StringTok{"Standard Deviation of Index"}\NormalTok{)}
+\NormalTok{plot\_df }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(df, ylab, main)\{}
+\NormalTok{  d }\OtherTok{=} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{index}\NormalTok{(df))}
+  \FunctionTok{plot}\NormalTok{(}\FunctionTok{as.zoo}\NormalTok{(df), }\AttributeTok{ylab=}\NormalTok{ylab, }\AttributeTok{main=}\NormalTok{main, }\AttributeTok{col=}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(df)), }\AttributeTok{screens =} \DecValTok{1}\NormalTok{, }\AttributeTok{lty =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(df)[}\DecValTok{2}\NormalTok{], }\AttributeTok{xlab=}\StringTok{""}\NormalTok{, }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{)}
+  \FunctionTok{axis.Date}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{at =} \FunctionTok{seq}\NormalTok{(d[}\DecValTok{1}\NormalTok{], d[}\FunctionTok{length}\NormalTok{(d)], }\AttributeTok{length.out=}\DecValTok{20}\NormalTok{),}
+            \AttributeTok{format=} \StringTok{"\%Y{-}\%m"}\NormalTok{, }\AttributeTok{las =} \DecValTok{2}\NormalTok{)}
+  \FunctionTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\AttributeTok{col=}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(df)), }\FunctionTok{colnames}\NormalTok{(df), }
+         \AttributeTok{lty =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(df), }\AttributeTok{cex =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{fill=}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(df)),}
+         \AttributeTok{xpd =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{horiz =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bty =} \StringTok{"n"}\NormalTok{)\}}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot\_df}\NormalTok{(cov\_case\_xts, }\AttributeTok{ylab=}\StringTok{"\# of confirmed cases"}\NormalTok{, }\AttributeTok{main=}\StringTok{"Confirmed COVID{-}19 cases"}\NormalTok{)}
+\FunctionTok{plot\_df}\NormalTok{(cov\_death\_xts, }\AttributeTok{ylab=}\StringTok{"\# of confirmed deaths"}\NormalTok{, }\AttributeTok{main=}\StringTok{"Confirmed COVID{-}19 deaths"}\NormalTok{)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{)) }\CommentTok{\# Leaves some space for the second axis}
+\NormalTok{d }\OtherTok{=} \FunctionTok{as.Date}\NormalTok{(}\FunctionTok{index}\NormalTok{(cov\_death\_xts))}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{index}\NormalTok{(cov\_death\_xts), }\FunctionTok{as.data.frame}\NormalTok{(cov\_death\_xts)}\SpecialCharTok{$}\NormalTok{World, }\AttributeTok{type=}\StringTok{"l"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"\# Deaths"}\NormalTok{, }\AttributeTok{main=}\StringTok{"World"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{""}\NormalTok{)}
+\FunctionTok{axis.Date}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{at =} \FunctionTok{seq}\NormalTok{(d[}\DecValTok{1}\NormalTok{], d[}\FunctionTok{length}\NormalTok{(d)], }\AttributeTok{length.out=}\DecValTok{20}\NormalTok{),}\AttributeTok{format=} \StringTok{"\%Y{-}\%m"}\NormalTok{, }\AttributeTok{las =} \DecValTok{2}\NormalTok{)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{new=}\NormalTok{T)}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{index}\NormalTok{(cov\_case\_xts), }\FunctionTok{as.data.frame}\NormalTok{(cov\_case\_xts)}\SpecialCharTok{$}\NormalTok{World, }\AttributeTok{type=}\StringTok{"l"}\NormalTok{,}\AttributeTok{axes=}\NormalTok{F, }\AttributeTok{xlab=}\ConstantTok{NA}\NormalTok{, }\AttributeTok{ylab=}\ConstantTok{NA}\NormalTok{,}\AttributeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\FunctionTok{axis.Date}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{at =} \FunctionTok{seq}\NormalTok{(d[}\DecValTok{1}\NormalTok{], d[}\FunctionTok{length}\NormalTok{(d)], }\AttributeTok{length.out=}\DecValTok{20}\NormalTok{),}\AttributeTok{format=} \StringTok{"\%Y{-}\%m"}\NormalTok{, }\AttributeTok{las =} \DecValTok{2}\NormalTok{)}
+\FunctionTok{axis}\NormalTok{(}\AttributeTok{side =} \DecValTok{4}\NormalTok{)}
+\FunctionTok{mtext}\NormalTok{(}\StringTok{"\# Cases"}\NormalTok{, }\AttributeTok{side =} \DecValTok{4}\NormalTok{, }\AttributeTok{line =} \DecValTok{3}\NormalTok{)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topleft"}\NormalTok{, }\AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"blue"}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\StringTok{"Deaths"}\NormalTok{, }\StringTok{"Cases"}\NormalTok{), }\AttributeTok{lty =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{cex =} \FloatTok{0.7}\NormalTok{)}
+\NormalTok{prices.norm }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(prices) }\SpecialCharTok{\%\textgreater{}\%}\FunctionTok{mutate\_if}\NormalTok{(is.numeric, }\FunctionTok{list}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ .}\SpecialCharTok{/} \FunctionTok{first}\NormalTok{(.)))}
+\FunctionTok{plot\_df}\NormalTok{(}\FunctionTok{as.zoo}\NormalTok{(prices.norm), }\AttributeTok{ylab=}\StringTok{"Normalised Value"}\NormalTok{, }\AttributeTok{main=}\StringTok{"Relative Change of Major Indexes"}\NormalTok{)}
+\NormalTok{break\_points }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol=}\FunctionTok{dim}\NormalTok{(prices)[}\DecValTok{2}\NormalTok{], }\AttributeTok{nrow=}\DecValTok{2}\NormalTok{, }
+                                 \AttributeTok{dimnames=}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(), }\FunctionTok{colnames}\NormalTok{(prices))))}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{colnames}\NormalTok{(prices))\{}
+\NormalTok{tests }\OtherTok{=} \FunctionTok{breakpoints}\NormalTok{((}\FunctionTok{ts}\NormalTok{(}\FunctionTok{log}\NormalTok{(prices[,i])) }\SpecialCharTok{\textasciitilde{}} \DecValTok{1}\NormalTok{), }\AttributeTok{breaks=}\DecValTok{2}\NormalTok{)}
+\NormalTok{b\_dates }\OtherTok{=} \FunctionTok{breakdates}\NormalTok{(tests, }\AttributeTok{breaks =} \DecValTok{2}\NormalTok{)}
+\NormalTok{break\_points[,i]}\OtherTok{=} \FunctionTok{index}\NormalTok{(prices)[b\_dates]}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{ts}\NormalTok{(}\FunctionTok{log}\NormalTok{(prices[,i])), }\AttributeTok{main=}\NormalTok{i, }\AttributeTok{xlab=}\StringTok{""}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{fitted}\NormalTok{(tests, }\AttributeTok{breaks =} \FunctionTok{length}\NormalTok{(tests}\SpecialCharTok{$}\NormalTok{breakpoints)), }\AttributeTok{col =} \DecValTok{4}\NormalTok{, }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{confint}\NormalTok{(tests, }\AttributeTok{breaks =} \FunctionTok{length}\NormalTok{(tests}\SpecialCharTok{$}\NormalTok{breakpoints)), }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{)}
+\NormalTok{\}}
+\FunctionTok{kable}\NormalTok{(break\_points, }\AttributeTok{caption =} \StringTok{"Level Structural breakpoints \& dates"}\NormalTok{)}
+\NormalTok{l }\OtherTok{=} \FunctionTok{dim}\NormalTok{(prices)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{tt }\OtherTok{=} \DecValTok{1}\SpecialCharTok{:}\NormalTok{l}
+
+\NormalTok{break\_points }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol=}\FunctionTok{dim}\NormalTok{(prices)[}\DecValTok{2}\NormalTok{], }\AttributeTok{nrow=}\DecValTok{2}\NormalTok{, }
+                                 \AttributeTok{dimnames=}\FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(), }\FunctionTok{colnames}\NormalTok{(prices))))}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{colnames}\NormalTok{(prices))\{}
+\NormalTok{tests }\OtherTok{=} \FunctionTok{breakpoints}\NormalTok{((}\FunctionTok{ts}\NormalTok{(}\FunctionTok{log}\NormalTok{(prices[,i])) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ tt), }\AttributeTok{breaks=}\DecValTok{2}\NormalTok{)}
+\NormalTok{b\_dates }\OtherTok{=} \FunctionTok{breakdates}\NormalTok{(tests, }\AttributeTok{breaks =} \DecValTok{2}\NormalTok{)}
+\NormalTok{break\_points[,i]}\OtherTok{=} \FunctionTok{index}\NormalTok{(prices)[b\_dates]}
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{ts}\NormalTok{(}\FunctionTok{log}\NormalTok{(prices[,i])), }\AttributeTok{main=}\NormalTok{i, }\AttributeTok{xlab=}\StringTok{""}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{fitted}\NormalTok{(tests, }\AttributeTok{breaks =} \FunctionTok{length}\NormalTok{(tests}\SpecialCharTok{$}\NormalTok{breakpoints)), }\AttributeTok{col =} \DecValTok{4}\NormalTok{, }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{confint}\NormalTok{(tests, }\AttributeTok{breaks =} \FunctionTok{length}\NormalTok{(tests}\SpecialCharTok{$}\NormalTok{breakpoints)), }\AttributeTok{xaxt=}\StringTok{"n"}\NormalTok{)}
+\NormalTok{\}}
+\FunctionTok{kable}\NormalTok{(break\_points, }\AttributeTok{caption =} \StringTok{"Trend Structural breakpoints \& dates"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
